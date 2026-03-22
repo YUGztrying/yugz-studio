@@ -4,7 +4,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import Lenis from 'lenis'
-import { ArrowRight, ArrowLeft, Play, Sparkles, Users, Globe, Image, ExternalLink, Quote, MessageCircle, Languages, X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Play, Sparkles, Users, Globe, Image, ExternalLink, Quote, MessageCircle, Languages, X, ChevronLeft, ChevronRight, ZoomIn, Video } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
@@ -37,6 +37,9 @@ function LangProvider({ children }) {
 }
 
 function useLang() { return useContext(LangContext) }
+
+// ─── MEDIA HELPERS ────────────────────────────────────
+const isVideo = (src) => /\.(mp4|webm|mov)$/i.test(src)
 
 // ─── AI VISUAL CATEGORIES ─────────────────────────────
 const AI_CATEGORIES = [
@@ -81,7 +84,10 @@ const AI_CATEGORIES = [
     description: ['Personal brand visuals and lifestyle content', 'Visuels de marque personnelle et contenu lifestyle'],
     cover: '/ai-visuals/brand-01.jpeg',
     tags: ['Branding', 'Lifestyle'],
-    images: Array.from({ length: 8 }, (_, i) => `/ai-visuals/brand-${String(i + 1).padStart(2, '0')}.jpeg`),
+    images: [
+      ...Array.from({ length: 8 }, (_, i) => `/ai-visuals/brand-${String(i + 1).padStart(2, '0')}.jpeg`),
+      ...Array.from({ length: 4 }, (_, i) => `/ai-visuals/brand-${String(i + 9).padStart(2, '0')}.mp4`),
+    ],
   },
   {
     slug: 'sports-athletic',
@@ -297,13 +303,25 @@ function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
         </button>
       )}
 
-      {/* Image */}
-      <img
-        src={images[currentIndex]}
-        alt=""
-        className="relative z-10 max-h-[85vh] max-w-[90vw] object-contain rounded-xl shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      />
+      {/* Media (Image or Video) */}
+      {isVideo(images[currentIndex]) ? (
+        <video
+          key={images[currentIndex]}
+          src={images[currentIndex]}
+          controls
+          autoPlay
+          playsInline
+          className="relative z-10 max-h-[85vh] max-w-[90vw] object-contain rounded-xl shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+        />
+      ) : (
+        <img
+          src={images[currentIndex]}
+          alt=""
+          className="relative z-10 max-h-[85vh] max-w-[90vw] object-contain rounded-xl shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+        />
+      )}
     </div>
   )
 }
@@ -396,7 +414,10 @@ function GalleryPage() {
           {t(...category.description)}
         </p>
         <div className="flex items-center gap-4 mt-6">
-          <span className="text-sm font-mono text-ivory/30">{category.images.length} {t('visuals', 'visuels')}</span>
+          <span className="text-sm font-mono text-ivory/30">
+            {category.images.filter(s => !isVideo(s)).length} {t('visuals', 'visuels')}
+            {category.images.some(isVideo) && ` + ${category.images.filter(isVideo).length} ${t('videos', 'vidéos')}`}
+          </span>
           <span className="w-1 h-1 rounded-full bg-ivory/20" />
           <span className="text-sm font-mono text-ivory/30">{t('Click to enlarge', 'Cliquer pour agrandir')}</span>
         </div>
@@ -405,23 +426,41 @@ function GalleryPage() {
       {/* Masonry-style Grid */}
       <div className="px-6 md:px-12 max-w-7xl mx-auto pb-24">
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-          {category.images.map((img, i) => (
+          {category.images.map((src, i) => (
             <div
               key={i}
               className="gallery-img break-inside-avoid group relative overflow-hidden rounded-2xl border border-ivory/5 hover:border-champagne/30 transition-all duration-500 cursor-pointer"
               onClick={() => openLightbox(i)}
             >
-              <img
-                src={img}
-                alt={`${t(...category.title)} — ${i + 1}`}
-                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
+              {isVideo(src) ? (
+                <video
+                  src={src}
+                  muted
+                  playsInline
+                  loop
+                  onMouseEnter={(e) => e.target.play()}
+                  onMouseLeave={(e) => { e.target.pause(); e.target.currentTime = 0 }}
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                  preload="metadata"
+                />
+              ) : (
+                <img
+                  src={src}
+                  alt={`${t(...category.title)} — ${i + 1}`}
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              )}
               <div className="absolute inset-0 bg-obsidian/0 group-hover:bg-obsidian/30 transition-all duration-500 flex items-center justify-center">
                 <div className="w-12 h-12 rounded-full bg-ivory/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-500">
-                  <ZoomIn size={20} className="text-ivory" />
+                  {isVideo(src) ? <Play size={20} className="text-ivory ml-0.5" /> : <ZoomIn size={20} className="text-ivory" />}
                 </div>
               </div>
+              {isVideo(src) && (
+                <div className="absolute top-3 right-3 px-2 py-1 rounded-md bg-obsidian/60 backdrop-blur-sm border border-ivory/10">
+                  <Video size={14} className="text-champagne" />
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -441,7 +480,7 @@ function GalleryPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-3 right-3">
                 <p className="text-sm font-bold text-ivory group-hover:text-champagne transition-colors truncate">{t(...cat.title)}</p>
-                <p className="text-[10px] font-mono text-ivory/30 mt-1">{cat.images.length} {t('visuals', 'visuels')}</p>
+                <p className="text-[10px] font-mono text-ivory/30 mt-1">{cat.images.length} {t('media', 'médias')}</p>
               </div>
             </Link>
           ))}
