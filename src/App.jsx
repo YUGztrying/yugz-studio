@@ -553,8 +553,8 @@ function Navbar() {
       </Link>
       <div className="hidden md:flex items-center gap-6 text-sm text-ivory/70">
         <a href="#work" className="hover:text-champagne transition-colors">{t('Work', 'Portfolio')}</a>
-        <a href="#community" className="hover:text-champagne transition-colors">{t('Community', 'Communaut\u00e9')}</a>
-        <a href="#about" className="hover:text-champagne transition-colors">{t('About', '\u00c0 propos')}</a>
+        <a href="#community" className="hover:text-champagne transition-colors">{t('Community', 'Communauté')}</a>
+        <a href="#about" className="hover:text-champagne transition-colors">{t('About', 'À propos')}</a>
       </div>
       <div className="flex items-center gap-2">
         <LangToggle />
@@ -602,10 +602,10 @@ function Hero() {
   }, [])
 
   const stats = [
-    { value: '150+', label: t('AI Visuals Created', 'Visuels IA Cr\u00e9\u00e9s') },
-    { value: '30+', label: t('Websites & Apps Shipped', 'Sites & Apps Livr\u00e9s') },
-    { value: '12+', label: t('Community Members', 'Membres Communaut\u00e9') },
-    { value: '80%', label: t('Avg. Cost Reduction', 'R\u00e9duction Co\u00fbts Moy.') },
+    { value: '150+', label: t('AI Visuals Created', 'Visuels IA Créés') },
+    { value: '30+', label: t('Websites & Apps Shipped', 'Sites & Apps Livrés') },
+    { value: '12+', label: t('Community Members', 'Membres Communauté') },
+    { value: '80%', label: t('Avg. Cost Reduction', 'Réduction Coûts Moy.') },
   ]
 
   return (
@@ -619,11 +619,11 @@ function Hero() {
       <div className="relative z-10 max-w-6xl mx-auto w-full px-6 md:px-12 pb-16 md:pb-24 pt-40">
         <div className="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-champagne/20 bg-champagne/5 mb-8">
           <Sparkles size={14} className="text-champagne" />
-          <span className="text-xs font-mono text-champagne tracking-wide uppercase">{t('AI Creative Studio', 'Studio Cr\u00e9atif IA')}</span>
+          <span className="text-xs font-mono text-champagne tracking-wide uppercase">{t('AI Creative Studio', 'Studio Créatif IA')}</span>
         </div>
 
         <h1 className="hero-line-1 font-bold text-5xl md:text-7xl lg:text-8xl tracking-[-0.04em] leading-[0.95] text-ivory mb-2">
-          {t('I create with', 'Je cr\u00e9e avec')}
+          {t('I create with', 'Je crée avec')}
         </h1>
         <p className="hero-line-2 font-drama italic text-7xl md:text-[9rem] lg:text-[11rem] leading-[0.85] tracking-[-0.02em] text-champagne">
           {t("l'IA.", "l'IA.")}
@@ -632,7 +632,7 @@ function Hero() {
         <p className="hero-sub text-lg md:text-xl text-ivory/60 max-w-xl mt-8 leading-relaxed">
           {t(
             <>AI visuals. Automated workflows. Websites & apps built at lightning speed. This is the portfolio of <span className="text-ivory font-medium">YUGZ</span> — the AI&nbsp;specialist.</>,
-            <>Visuels IA. Workflows automatis\u00e9s. Sites & apps construits \u00e0 la vitesse de l\u2019\u00e9clair. Voici le portfolio de <span className="text-ivory font-medium">YUGZ</span> — le sp\u00e9cialiste&nbsp;IA.</>
+            <>Visuels IA. Workflows automatisés. Sites & apps construits à la vitesse de l’éclair. Voici le portfolio de <span className="text-ivory font-medium">YUGZ</span> — le spécialiste&nbsp;IA.</>
           )}
         </p>
 
@@ -643,7 +643,7 @@ function Hero() {
             </span>
           </a>
           <a href="#cta" className="inline-flex items-center gap-2 text-ivory/50 hover:text-ivory transition-colors text-sm">
-            <Play size={14} /> {t('Book a Call', 'R\u00e9server un Appel')}
+            <Play size={14} /> {t('Book a Call', 'Réserver un Appel')}
           </a>
         </div>
 
@@ -658,7 +658,7 @@ function Hero() {
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-40">
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-ivory/50">{t('Scroll', 'D\u00e9filer')}</span>
+        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-ivory/50">{t('Scroll', 'Défiler')}</span>
         <div className="w-px h-8 bg-gradient-to-b from-champagne/60 to-transparent" />
       </div>
     </section>
@@ -746,7 +746,7 @@ function Portfolio() {
         <div>
           <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">Portfolio</span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-[-0.04em] mt-4 text-ivory">
-            {t(<>Selected <span className="font-drama italic text-champagne">work</span>.</>, <><span className="font-drama italic text-champagne">Travaux</span> s\u00e9lectionn\u00e9s.</>)}
+            {t(<>Selected <span className="font-drama italic text-champagne">work</span>.</>, <><span className="font-drama italic text-champagne">Travaux</span> sélectionnés.</>)}
           </h2>
         </div>
         <div className="flex gap-2">
@@ -820,13 +820,13 @@ function Testimonials() {
       <div className="px-6 md:px-12 max-w-7xl mx-auto mb-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t('Testimonials', 'T\u00e9moignages')}</span>
+            <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t('Testimonials', 'Témoignages')}</span>
             <h2 className="text-4xl md:text-5xl font-bold tracking-[-0.04em] mt-4 text-ivory">
               {t(<>What people <span className="font-drama italic text-champagne">say</span>.</>, <>Ce qu'on <span className="font-drama italic text-champagne">dit</span> de moi.</>)}
             </h2>
           </div>
           <p className="text-sm text-ivory/40 max-w-sm">
-            {t('Real messages from real clients and students. Unscripted, unfiltered.', 'De vrais messages de vrais clients et \u00e9tudiants. Sans filtre.')}
+            {t('Real messages from real clients and students. Unscripted, unfiltered.', 'De vrais messages de vrais clients et étudiants. Sans filtre.')}
           </p>
         </div>
       </div>
@@ -839,7 +839,7 @@ function Testimonials() {
             <p className="font-drama italic text-4xl md:text-6xl lg:text-7xl text-ivory leading-[1.1] tracking-[-0.02em]">
               {t(
                 <>"Guy, you changed <span className="text-champagne">my life</span>."</>,
-                <>"Guy, tu as chang\u00e9 <span className="text-champagne">ma vie</span>."</>
+                <>"Guy, tu as changé <span className="text-champagne">ma vie</span>."</>
               )}
             </p>
           </blockquote>
@@ -909,10 +909,10 @@ function Community() {
   }, [])
 
   const perks = [
-    { icon: '\ud83c\udf93', title: t('AI Mastery Courses', 'Cours Ma\u00eetrise IA'), description: t('Step-by-step tutorials on AI image generation, automation, and prompt engineering.', 'Tutoriels \u00e9tape par \u00e9tape sur la g\u00e9n\u00e9ration d\'images IA, l\'automatisation et le prompt engineering.') },
-    { icon: '\ud83d\udee0\ufe0f', title: t('Templates & Workflows', 'Templates & Workflows'), description: t('Pre-built automation templates, prompt libraries, and development boilerplates.', 'Templates d\'automatisation, biblioth\u00e8ques de prompts et boilerplates de d\u00e9veloppement.') },
-    { icon: '\ud83e\udd1d', title: t('Live Workshops', 'Ateliers en Direct'), description: t('Weekly live sessions where we build AI projects together from scratch.', 'Sessions live hebdomadaires o\u00f9 on construit des projets IA ensemble de z\u00e9ro.') },
-    { icon: '\ud83d\udcac', title: t('Private Community', 'Communaut\u00e9 Priv\u00e9e'), description: t('Network with creators, entrepreneurs, and developers pushing AI boundaries.', 'R\u00e9seautez avec des cr\u00e9ateurs, entrepreneurs et d\u00e9veloppeurs qui repoussent les limites de l\'IA.') },
+    { icon: '🎓', title: t('AI Mastery Courses', 'Cours Maîtrise IA'), description: t('Step-by-step tutorials on AI image generation, automation, and prompt engineering.', 'Tutoriels étape par étape sur la génération d\'images IA, l\'automatisation et le prompt engineering.') },
+    { icon: '🛠️', title: t('Templates & Workflows', 'Templates & Workflows'), description: t('Pre-built automation templates, prompt libraries, and development boilerplates.', 'Templates d\'automatisation, bibliothèques de prompts et boilerplates de développement.') },
+    { icon: '🤝', title: t('Live Workshops', 'Ateliers en Direct'), description: t('Weekly live sessions where we build AI projects together from scratch.', 'Sessions live hebdomadaires où on construit des projets IA ensemble de zéro.') },
+    { icon: '💬', title: t('Private Community', 'Communauté Privée'), description: t('Network with creators, entrepreneurs, and developers pushing AI boundaries.', 'Réseautez avec des créateurs, entrepreneurs et développeurs qui repoussent les limites de l\'IA.') },
   ]
 
   return (
@@ -924,20 +924,20 @@ function Community() {
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="flex items-center gap-3 mb-6">
           <Users size={16} className="text-champagne" />
-          <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t('Skool Community', 'Communaut\u00e9 Skool')}</span>
+          <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t('Skool Community', 'Communauté Skool')}</span>
         </div>
 
         <h2 className="community-heading font-drama italic text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-[-0.02em] mb-6">
           {t(
             <>Join the <span className="text-champagne">YUGZ</span> community. Learn AI. Build faster. <span className="text-champagne">Together</span>.</>,
-            <>Rejoins la communaut\u00e9 <span className="text-champagne">YUGZ</span>. Apprends l'IA. Construis plus vite. <span className="text-champagne">Ensemble</span>.</>
+            <>Rejoins la communauté <span className="text-champagne">YUGZ</span>. Apprends l'IA. Construis plus vite. <span className="text-champagne">Ensemble</span>.</>
           )}
         </h2>
 
         <p className="text-lg text-ivory/40 max-w-2xl mb-16 leading-relaxed">
           {t(
-            'A private Skool community where I share everything \u2014 the tools, the techniques, the workflows. Whether you want to create AI content, automate your business, or build apps faster.',
-            'Une communaut\u00e9 Skool priv\u00e9e o\u00f9 je partage tout \u2014 les outils, les techniques, les workflows. Que tu veuilles cr\u00e9er du contenu IA, automatiser ton business ou construire des apps plus vite.'
+            'A private Skool community where I share everything — the tools, the techniques, the workflows. Whether you want to create AI content, automate your business, or build apps faster.',
+            'Une communauté Skool privée où je partage tout — les outils, les techniques, les workflows. Que tu veuilles créer du contenu IA, automatiser ton business ou construire des apps plus vite.'
           )}
         </p>
 
@@ -953,7 +953,7 @@ function Community() {
 
         <div className="flex flex-wrap items-center gap-6">
           <a href={SKOOL} target="_blank" rel="noopener noreferrer" className="magnetic-btn inline-flex items-center gap-2 bg-champagne text-white font-semibold px-8 py-4 rounded-full text-base">
-            <span className="flex items-center gap-2">{t('Join the Community', 'Rejoindre la Communaut\u00e9')} <ExternalLink size={16} /></span>
+            <span className="flex items-center gap-2">{t('Join the Community', 'Rejoindre la Communauté')} <ExternalLink size={16} /></span>
           </a>
           <div className="flex items-center gap-3">
             <div className="flex -space-x-2">
@@ -991,9 +991,9 @@ function About() {
   }, [])
 
   const services = [
-    { icon: <Image size={20} />, title: t('AI Visuals & Content', 'Visuels IA & Contenu'), description: t('Brand imagery, social media content, product photography, video concepts \u2014 all generated with AI at a fraction of traditional costs.', 'Imagerie de marque, contenu r\u00e9seaux sociaux, photo produit, concepts vid\u00e9o \u2014 tout g\u00e9n\u00e9r\u00e9 par IA \u00e0 une fraction du co\u00fbt traditionnel.') },
-    { icon: <Sparkles size={20} />, title: t('Automation & AI Tools', 'Automatisation & Outils IA'), description: t("Custom workflows that eliminate repetitive tasks. CRM automations, content pipelines, data processing \u2014 if it's manual, I can automate it.", 'Workflows personnalis\u00e9s qui \u00e9liminent les t\u00e2ches r\u00e9p\u00e9titives. Automatisations CRM, pipelines de contenu, traitement de donn\u00e9es \u2014 si c\'est manuel, je peux l\'automatiser.') },
-    { icon: <Globe size={20} />, title: t('Websites & Apps', 'Sites Web & Apps'), description: t('High-performance websites, dashboards, and apps built in days. From landing pages to full-stack platforms \u2014 AI-accelerated development.', 'Sites web performants, dashboards et apps construits en quelques jours. Des landing pages aux plateformes full-stack \u2014 d\u00e9veloppement acc\u00e9l\u00e9r\u00e9 par l\'IA.') },
+    { icon: <Image size={20} />, title: t('AI Visuals & Content', 'Visuels IA & Contenu'), description: t('Brand imagery, social media content, product photography, video concepts — all generated with AI at a fraction of traditional costs.', 'Imagerie de marque, contenu réseaux sociaux, photo produit, concepts vidéo — tout généré par IA à une fraction du coût traditionnel.') },
+    { icon: <Sparkles size={20} />, title: t('Automation & AI Tools', 'Automatisation & Outils IA'), description: t("Custom workflows that eliminate repetitive tasks. CRM automations, content pipelines, data processing — if it's manual, I can automate it.", 'Workflows personnalisés qui éliminent les tâches répétitives. Automatisations CRM, pipelines de contenu, traitement de données — si c\'est manuel, je peux l\'automatiser.') },
+    { icon: <Globe size={20} />, title: t('Websites & Apps', 'Sites Web & Apps'), description: t('High-performance websites, dashboards, and apps built in days. From landing pages to full-stack platforms — AI-accelerated development.', 'Sites web performants, dashboards et apps construits en quelques jours. Des landing pages aux plateformes full-stack — développement accéléré par l\'IA.') },
   ]
 
   return (
@@ -1001,10 +1001,10 @@ function About() {
       <div className="about-content">
         <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t('What I Do', 'Ce Que Je Fais')}</span>
         <h2 className="text-4xl md:text-6xl font-bold tracking-[-0.04em] mt-4 mb-6 text-ivory">
-          {t(<>The AI specialist that<br /><span className="font-drama italic text-champagne">builds & creates</span>.</>, <>Le sp\u00e9cialiste IA qui<br /><span className="font-drama italic text-champagne">construit & cr\u00e9e</span>.</>)}
+          {t(<>The AI specialist that<br /><span className="font-drama italic text-champagne">builds & creates</span>.</>, <>Le spécialiste IA qui<br /><span className="font-drama italic text-champagne">construit & crée</span>.</>)}
         </h2>
         <p className="text-lg text-ivory/40 max-w-2xl mb-16 leading-relaxed">
-          {t('I combine creative AI, automation, and rapid development to help businesses move faster and cost less. No fluff, no bloated teams \u2014 just results.', 'Je combine IA cr\u00e9ative, automatisation et d\u00e9veloppement rapide pour aider les entreprises \u00e0 aller plus vite et d\u00e9penser moins. Pas de blabla, pas d\'\u00e9quipes gonfl\u00e9es \u2014 juste des r\u00e9sultats.')}
+          {t('I combine creative AI, automation, and rapid development to help businesses move faster and cost less. No fluff, no bloated teams — just results.', 'Je combine IA créative, automatisation et développement rapide pour aider les entreprises à aller plus vite et dépenser moins. Pas de blabla, pas d\'équipes gonflées — juste des résultats.')}
         </p>
         <div className="grid md:grid-cols-3 gap-6">
           {services.map((s) => (
@@ -1066,20 +1066,20 @@ function CTA() {
       <div className="cta-content max-w-3xl mx-auto">
         <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t("Let's Work Together", 'Travaillons Ensemble')}</span>
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-[-0.04em] mt-6 mb-4 text-ivory">
-          {t(<>Ready to build your<br /><span className="font-drama italic text-champagne">unfair advantage</span>?</>, <>Pr\u00eat \u00e0 construire ton<br /><span className="font-drama italic text-champagne">avantage d\u00e9cisif</span> ?</>)}
+          {t(<>Ready to build your<br /><span className="font-drama italic text-champagne">unfair advantage</span>?</>, <>Prêt à construire ton<br /><span className="font-drama italic text-champagne">avantage décisif</span> ?</>)}
         </h2>
         <p className="text-lg text-ivory/50 max-w-xl mx-auto mb-10 leading-relaxed">
           {t(
             "Book a free 30-minute strategy call. I'll audit your workflows, identify your biggest opportunities, and show you exactly how AI can transform your business.",
-            'R\u00e9serve un appel strat\u00e9gique gratuit de 30 minutes. J\'auditerai tes workflows, identifierai tes plus grandes opportunit\u00e9s et te montrerai exactement comment l\'IA peut transformer ton business.'
+            'Réserve un appel stratégique gratuit de 30 minutes. J\'auditerai tes workflows, identifierai tes plus grandes opportunités et te montrerai exactement comment l\'IA peut transformer ton business.'
           )}
         </p>
         <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="magnetic-btn inline-flex items-center gap-3 bg-champagne text-white font-bold px-10 py-5 rounded-full text-lg">
           <span className="flex items-center gap-3">
-            {t('Book Free Strategy Call', 'R\u00e9server un Appel Gratuit')} <ArrowRight size={20} />
+            {t('Book Free Strategy Call', 'Réserver un Appel Gratuit')} <ArrowRight size={20} />
           </span>
         </a>
-        <p className="mt-6 text-xs text-ivory/30 font-mono">{t('No commitment. No pitch deck. Just answers.', 'Sans engagement. Sans pitch deck. Juste des r\u00e9ponses.')}</p>
+        <p className="mt-6 text-xs text-ivory/30 font-mono">{t('No commitment. No pitch deck. Just answers.', 'Sans engagement. Sans pitch deck. Juste des réponses.')}</p>
       </div>
     </section>
   )
@@ -1095,22 +1095,22 @@ function Footer() {
           <div className="md:col-span-1">
             <span className="text-2xl font-bold tracking-[-0.04em] text-ivory">YUGZ</span>
             <p className="text-sm text-ivory/40 mt-3 max-w-xs leading-relaxed">
-              {t('The AI specialist that combines creative AI, automation, and development to help businesses move faster and cost less.', 'Le sp\u00e9cialiste IA qui combine IA cr\u00e9ative, automatisation et d\u00e9veloppement pour aider les entreprises \u00e0 aller plus vite et d\u00e9penser moins.')}
+              {t('The AI specialist that combines creative AI, automation, and development to help businesses move faster and cost less.', 'Le spécialiste IA qui combine IA créative, automatisation et développement pour aider les entreprises à aller plus vite et dépenser moins.')}
             </p>
           </div>
           <div>
             <div className="text-xs font-mono text-ivory/30 uppercase tracking-[0.15em] mb-4">{t('Navigate', 'Naviguer')}</div>
             <ul className="space-y-2 text-sm text-ivory/50">
               <li><a href="#work" className="hover:text-champagne transition-colors">{t('Work', 'Portfolio')}</a></li>
-              <li><a href="#community" className="hover:text-champagne transition-colors">{t('Community', 'Communaut\u00e9')}</a></li>
-              <li><a href="#about" className="hover:text-champagne transition-colors">{t('About', '\u00c0 propos')}</a></li>
+              <li><a href="#community" className="hover:text-champagne transition-colors">{t('Community', 'Communauté')}</a></li>
+              <li><a href="#about" className="hover:text-champagne transition-colors">{t('About', 'À propos')}</a></li>
             </ul>
           </div>
           <div>
             <div className="text-xs font-mono text-ivory/30 uppercase tracking-[0.15em] mb-4">{t('Connect', 'Contact')}</div>
             <ul className="space-y-2 text-sm text-ivory/50">
-              <li><a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="hover:text-champagne transition-colors">{t('Book a Call', 'R\u00e9server un Appel')}</a></li>
-              <li><a href={SKOOL} target="_blank" rel="noopener noreferrer" className="hover:text-champagne transition-colors">{t('Skool Community', 'Communaut\u00e9 Skool')}</a></li>
+              <li><a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="hover:text-champagne transition-colors">{t('Book a Call', 'Réserver un Appel')}</a></li>
+              <li><a href={SKOOL} target="_blank" rel="noopener noreferrer" className="hover:text-champagne transition-colors">{t('Skool Community', 'Communauté Skool')}</a></li>
             </ul>
           </div>
         </div>
@@ -1119,7 +1119,7 @@ function Footer() {
             <div className="w-1.5 h-1.5 rounded-full bg-green-500" style={{ animation: 'pulse-dot 2s ease infinite' }} />
             <span className="text-[10px] font-mono text-ivory/30 tracking-wider">{t('AVAILABLE FOR PROJECTS', 'DISPONIBLE POUR DES PROJETS')}</span>
           </div>
-          <span className="text-[10px] font-mono text-ivory/20">&copy; {new Date().getFullYear()} YUGZ. {t('All rights reserved.', 'Tous droits r\u00e9serv\u00e9s.')}</span>
+          <span className="text-[10px] font-mono text-ivory/20">&copy; {new Date().getFullYear()} YUGZ. {t('All rights reserved.', 'Tous droits réservés.')}</span>
         </div>
       </div>
     </footer>
