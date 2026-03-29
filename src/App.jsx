@@ -171,7 +171,7 @@ const PORTFOLIO_ITEMS = [
     id: 102, category: 'websites',
     title: ['Apartment Rental Platform', 'Plateforme Location Appartements'],
     description: ['Property rental website with booking system', 'Site de location immobilière avec système de réservation'],
-    image: '/websites/APPARTMENT RENTAL/APPARTMENT RENTAL.png',
+    image: '/websites/APARTMENT RENTAL/APARTMENT RENTAL.png',
     tags: ['Framer', 'Real Estate'],
     link: 'https://exuberant-pictogram-259979.framer.app/',
   },
@@ -269,7 +269,7 @@ const TESTIMONIALS = [
 ]
 
 // ─── LIGHTBOX COMPONENT ────────────────────────────────
-function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
+function Lightbox({ images, currentIndex, categoryTitle, onClose, onPrev, onNext }) {
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'Escape') onClose()
@@ -290,11 +290,12 @@ function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
       <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 text-sm font-mono text-ivory/40">
         {currentIndex + 1} / {images.length}
       </div>
-      <button onClick={onClose} className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full bg-ivory/5 border border-ivory/10 flex items-center justify-center text-ivory/60 hover:text-ivory hover:bg-ivory/10 transition-all">
+      <button aria-label="Close gallery" onClick={onClose} className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full bg-ivory/5 border border-ivory/10 flex items-center justify-center text-ivory/60 hover:text-ivory hover:bg-ivory/10 transition-all">
         <X size={18} />
       </button>
       {images.length > 1 && (
         <button
+          aria-label="Previous image"
           onClick={(e) => { e.stopPropagation(); onPrev() }}
           className="absolute left-4 md:left-8 z-10 w-12 h-12 rounded-full bg-ivory/5 border border-ivory/10 flex items-center justify-center text-ivory/60 hover:text-ivory hover:bg-ivory/10 transition-all"
         >
@@ -303,6 +304,7 @@ function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
       )}
       {images.length > 1 && (
         <button
+          aria-label="Next image"
           onClick={(e) => { e.stopPropagation(); onNext() }}
           className="absolute right-4 md:right-8 z-10 w-12 h-12 rounded-full bg-ivory/5 border border-ivory/10 flex items-center justify-center text-ivory/60 hover:text-ivory hover:bg-ivory/10 transition-all"
         >
@@ -322,7 +324,7 @@ function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
       ) : (
         <img
           src={images[currentIndex]}
-          alt=""
+          alt={categoryTitle ? `${categoryTitle} — image ${currentIndex + 1}` : `Image ${currentIndex + 1}`}
           className="relative z-10 max-h-[85vh] max-w-[90vw] object-contain rounded-xl shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         />
@@ -421,7 +423,7 @@ function GalleryPage() {
       <div className="px-6 md:px-12 max-w-7xl mx-auto pb-24">
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
           {category.images.map((src, i) => (
-            <div key={i} className="gallery-img break-inside-avoid group relative overflow-hidden rounded-2xl border border-ivory/5 hover:border-champagne/30 transition-all duration-500 cursor-pointer" onClick={() => openLightbox(i)}>
+            <div key={i} role="button" tabIndex={0} className="gallery-img break-inside-avoid group relative overflow-hidden rounded-2xl border border-ivory/5 hover:border-champagne/30 transition-all duration-500 cursor-pointer" onClick={() => openLightbox(i)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i) } }}>
               {isVideo(src) ? (
                 <video src={src} muted playsInline loop onMouseEnter={(e) => e.target.play()} onMouseLeave={(e) => { e.target.pause(); e.target.currentTime = 0 }} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" preload="metadata" />
               ) : (
@@ -466,7 +468,7 @@ function GalleryPage() {
       </div>
 
       {lightboxIndex !== null && (
-        <Lightbox images={category.images} currentIndex={lightboxIndex} onClose={closeLightbox} onPrev={prevImage} onNext={nextImage} />
+        <Lightbox images={category.images} currentIndex={lightboxIndex} categoryTitle={t(...category.title)} onClose={closeLightbox} onPrev={prevImage} onNext={nextImage} />
       )}
     </div>
   )
