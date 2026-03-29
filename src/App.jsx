@@ -4,7 +4,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import Lenis from 'lenis'
-import { ArrowRight, ArrowLeft, Play, Sparkles, Users, Globe, Image, ExternalLink, Quote, MessageCircle, Languages, X, ChevronLeft, ChevronRight, ZoomIn, Video } from 'lucide-react'
+import { ArrowRight, ArrowLeft, ArrowDown, Play, Sparkles, Users, Globe, Image, ExternalLink, Quote, MessageCircle, Languages, X, ChevronLeft, ChevronRight, ZoomIn, Video, Zap, GraduationCap, Scissors, ShoppingBag, BookOpen, CheckCircle, Building2 } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
@@ -270,20 +270,13 @@ function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center" onClick={onClose}>
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-obsidian/95 backdrop-blur-xl" />
-
-      {/* Counter */}
       <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 text-sm font-mono text-ivory/40">
         {currentIndex + 1} / {images.length}
       </div>
-
-      {/* Close */}
       <button onClick={onClose} className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full bg-ivory/5 border border-ivory/10 flex items-center justify-center text-ivory/60 hover:text-ivory hover:bg-ivory/10 transition-all">
         <X size={18} />
       </button>
-
-      {/* Prev */}
       {images.length > 1 && (
         <button
           onClick={(e) => { e.stopPropagation(); onPrev() }}
@@ -292,8 +285,6 @@ function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
           <ChevronLeft size={22} />
         </button>
       )}
-
-      {/* Next */}
       {images.length > 1 && (
         <button
           onClick={(e) => { e.stopPropagation(); onNext() }}
@@ -302,8 +293,6 @@ function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
           <ChevronRight size={22} />
         </button>
       )}
-
-      {/* Media (Image or Video) */}
       {isVideo(images[currentIndex]) ? (
         <video
           key={images[currentIndex]}
@@ -359,7 +348,6 @@ function GalleryPage() {
         }
       )
     }, gridRef)
-    // Safety: force visibility after 1.5s
     const safety = setTimeout(() => {
       imgs.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' })
       headerEls.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' })
@@ -385,13 +373,9 @@ function GalleryPage() {
 
   return (
     <div ref={gridRef} className="min-h-screen bg-obsidian">
-      {/* Navigation bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-obsidian/80 backdrop-blur-xl border-b border-ivory/5">
         <div className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
-          <button
-            onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-ivory/60 hover:text-ivory transition-colors"
-          >
+          <button onClick={() => navigate('/')} className="flex items-center gap-2 text-ivory/60 hover:text-ivory transition-colors">
             <ArrowLeft size={18} />
             <span className="text-sm font-medium">{t('Back to Portfolio', 'Retour au Portfolio')}</span>
           </button>
@@ -400,19 +384,14 @@ function GalleryPage() {
         </div>
       </nav>
 
-      {/* Header */}
       <div className="gallery-header pt-28 pb-12 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="flex flex-wrap gap-2 mb-4">
           {category.tags.map((tag) => (
             <span key={tag} className="text-[10px] font-mono px-3 py-1 rounded-full border border-champagne/20 text-champagne/70 tracking-wider uppercase">{tag}</span>
           ))}
         </div>
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-[-0.04em] text-ivory mb-4">
-          {t(...category.title)}
-        </h1>
-        <p className="text-lg text-ivory/50 max-w-2xl leading-relaxed">
-          {t(...category.description)}
-        </p>
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-[-0.04em] text-ivory mb-4">{t(...category.title)}</h1>
+        <p className="text-lg text-ivory/50 max-w-2xl leading-relaxed">{t(...category.description)}</p>
         <div className="flex items-center gap-4 mt-6">
           <span className="text-sm font-mono text-ivory/30">
             {category.images.filter(s => !isVideo(s)).length} {t('visuals', 'visuels')}
@@ -423,33 +402,14 @@ function GalleryPage() {
         </div>
       </div>
 
-      {/* Masonry-style Grid */}
       <div className="px-6 md:px-12 max-w-7xl mx-auto pb-24">
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
           {category.images.map((src, i) => (
-            <div
-              key={i}
-              className="gallery-img break-inside-avoid group relative overflow-hidden rounded-2xl border border-ivory/5 hover:border-champagne/30 transition-all duration-500 cursor-pointer"
-              onClick={() => openLightbox(i)}
-            >
+            <div key={i} className="gallery-img break-inside-avoid group relative overflow-hidden rounded-2xl border border-ivory/5 hover:border-champagne/30 transition-all duration-500 cursor-pointer" onClick={() => openLightbox(i)}>
               {isVideo(src) ? (
-                <video
-                  src={src}
-                  muted
-                  playsInline
-                  loop
-                  onMouseEnter={(e) => e.target.play()}
-                  onMouseLeave={(e) => { e.target.pause(); e.target.currentTime = 0 }}
-                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                  preload="metadata"
-                />
+                <video src={src} muted playsInline loop onMouseEnter={(e) => e.target.play()} onMouseLeave={(e) => { e.target.pause(); e.target.currentTime = 0 }} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" preload="metadata" />
               ) : (
-                <img
-                  src={src}
-                  alt={`${t(...category.title)} — ${i + 1}`}
-                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
+                <img src={src} alt={`${t(...category.title)} — ${i + 1}`} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
               )}
               <div className="absolute inset-0 bg-obsidian/0 group-hover:bg-obsidian/30 transition-all duration-500 flex items-center justify-center">
                 <div className="w-12 h-12 rounded-full bg-ivory/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-500">
@@ -466,16 +426,11 @@ function GalleryPage() {
         </div>
       </div>
 
-      {/* Browse Other Categories */}
       <div className="px-6 md:px-12 max-w-7xl mx-auto pb-24">
         <h3 className="text-xs font-mono text-ivory/30 tracking-[0.2em] uppercase mb-6">{t('Browse Other Categories', 'Parcourir les Autres Catégories')}</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {AI_CATEGORIES.filter(c => c.slug !== slug).map((cat) => (
-            <Link
-              key={cat.slug}
-              to={`/gallery/${cat.slug}`}
-              className="group relative overflow-hidden rounded-xl border border-ivory/5 hover:border-champagne/30 transition-all duration-500 aspect-square"
-            >
+            <Link key={cat.slug} to={`/gallery/${cat.slug}`} className="group relative overflow-hidden rounded-xl border border-ivory/5 hover:border-champagne/30 transition-all duration-500 aspect-square">
               <img src={cat.cover} alt={t(...cat.title)} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-3 right-3">
@@ -487,7 +442,6 @@ function GalleryPage() {
         </div>
       </div>
 
-      {/* CTA at bottom */}
       <div className="px-6 md:px-12 max-w-7xl mx-auto pb-16 text-center">
         <p className="text-ivory/40 mb-4">{t('Like what you see?', 'Tu aimes ce que tu vois ?')}</p>
         <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-champagne text-white font-semibold px-8 py-4 rounded-full text-base hover:brightness-110 transition-all">
@@ -495,15 +449,8 @@ function GalleryPage() {
         </a>
       </div>
 
-      {/* Lightbox */}
       {lightboxIndex !== null && (
-        <Lightbox
-          images={category.images}
-          currentIndex={lightboxIndex}
-          onClose={closeLightbox}
-          onPrev={prevImage}
-          onNext={nextImage}
-        />
+        <Lightbox images={category.images} currentIndex={lightboxIndex} onClose={closeLightbox} onPrev={prevImage} onNext={nextImage} />
       )}
     </div>
   )
@@ -548,20 +495,15 @@ function Navbar() {
       className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 md:gap-8 px-4 md:px-8 py-3 rounded-full border border-transparent transition-all duration-500"
       style={{ background: 'transparent' }}
     >
-      <Link to="/" className="font-bold text-lg tracking-[-0.04em] text-ivory">
-        YUGZ
-      </Link>
+      <Link to="/" className="font-bold text-lg tracking-[-0.04em] text-ivory">YUGZ</Link>
       <div className="hidden md:flex items-center gap-6 text-sm text-ivory/70">
+        <a href="#services" className="hover:text-champagne transition-colors">{t('Services', 'Services')}</a>
         <a href="#work" className="hover:text-champagne transition-colors">{t('Work', 'Portfolio')}</a>
         <a href="#community" className="hover:text-champagne transition-colors">{t('Community', 'Communauté')}</a>
-        <a href="#about" className="hover:text-champagne transition-colors">{t('About', 'À propos')}</a>
       </div>
       <div className="flex items-center gap-2">
         <LangToggle />
-        <a
-          href="#cta"
-          className="magnetic-btn bg-champagne text-white text-sm font-semibold px-5 py-2 rounded-full whitespace-nowrap"
-        >
+        <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="magnetic-btn bg-champagne text-white text-sm font-semibold px-5 py-2 rounded-full whitespace-nowrap">
           <span>{t("Let's Talk", 'Parlons')}</span>
         </a>
       </div>
@@ -579,79 +521,83 @@ function Navbar() {
   )
 }
 
-// ─── HERO ───────────────────────────────────────────
+// ─── HERO (Client-Oriented) ─────────────────────────
 function Hero() {
   const heroRef = useRef(null)
   const { t } = useLang()
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const heroEls = heroRef.current?.querySelectorAll('.hero-line-1, .hero-line-2, .hero-sub, .hero-cta, .hero-badge, .hero-stats > div')
+    const heroEls = heroRef.current?.querySelectorAll('.hero-line-1, .hero-line-2, .hero-sub, .hero-cta, .hero-badge, .hero-pillars > div')
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.3, onComplete: () => {
         heroEls?.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' })
       }})
-      tl.fromTo('.hero-line-1', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' })
+      tl.fromTo('.hero-badge', { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.7)' })
+        .fromTo('.hero-line-1', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.1')
         .fromTo('.hero-line-2', { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=0.5')
         .fromTo('.hero-sub', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4')
         .fromTo('.hero-cta', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.3')
-        .fromTo('.hero-badge', { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.7)' }, '-=0.2')
-        .fromTo('.hero-stats > div', { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: 'power3.out' }, '-=0.2')
+        .fromTo('.hero-pillars > div', { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: 'power3.out' }, '-=0.2')
     }, heroRef)
     return () => { ctx.revert(); heroEls?.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
   }, [])
 
-  const stats = [
-    { value: '150+', label: t('AI Visuals Created', 'Visuels IA Créés') },
-    { value: '30+', label: t('Websites & Apps Shipped', 'Sites & Apps Livrés') },
-    { value: '12+', label: t('Community Members', 'Membres Communauté') },
-    { value: '80%', label: t('Avg. Cost Reduction', 'Réduction Coûts Moy.') },
+  const pillars = [
+    { icon: <Globe size={18} />, label: t('Sites & Apps', 'Sites & Apps'), sub: t('Your product in days, not months', 'Ton produit existe en jours, pas en mois') },
+    { icon: <Image size={18} />, label: t('AI Visuals', 'Visuels IA'), sub: t('$50k campaigns — for a fraction', 'Tes campagnes à 50k$ — pour une fraction') },
+    { icon: <Zap size={18} />, label: t('Automation', 'Automatisation'), sub: t('Your repetitive tasks disappear', 'Tes tâches répétitives disparaissent') },
+    { icon: <GraduationCap size={18} />, label: t('Training', 'Formation'), sub: t('Learn to do it yourself', 'Tu apprends à le faire toi-même') },
   ]
 
   return (
-    <section id="hero" ref={heroRef} className="relative min-h-[100dvh] flex items-end overflow-hidden">
+    <section id="hero" ref={heroRef} className="relative min-h-[100dvh] flex items-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80&auto=format" alt="" className="w-full h-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/80 to-obsidian/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-obsidian/60 to-transparent" />
+        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80&auto=format" alt="" className="w-full h-full object-cover opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/85 to-obsidian/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-obsidian/70 to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full px-6 md:px-12 pb-16 md:pb-24 pt-40">
+      <div className="relative z-10 max-w-6xl mx-auto w-full px-6 md:px-12 pt-32 pb-16 md:pb-24">
         <div className="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-champagne/20 bg-champagne/5 mb-8">
           <Sparkles size={14} className="text-champagne" />
-          <span className="text-xs font-mono text-champagne tracking-wide uppercase">{t('AI Creative Studio', 'Studio Créatif IA')}</span>
+          <span className="text-xs font-mono text-champagne tracking-wide uppercase">{t('AI Specialist', 'Spécialiste IA')}</span>
         </div>
 
-        <h1 className="hero-line-1 font-bold text-5xl md:text-7xl lg:text-8xl tracking-[-0.04em] leading-[0.95] text-ivory mb-2">
-          {t('I create with', 'Je crée avec')}
+        <h1 className="hero-line-1 font-bold text-4xl md:text-6xl lg:text-7xl tracking-[-0.04em] leading-[1.05] text-ivory mb-2">
+          {t(
+            <>You want to use AI —<br />but where do you start?</>,
+            <>Tu veux utiliser l'IA —<br />mais par où commencer ?</>
+          )}
         </h1>
-        <p className="hero-line-2 font-drama italic text-7xl md:text-[9rem] lg:text-[11rem] leading-[0.85] tracking-[-0.02em] text-champagne">
-          {t("l'IA.", "l'IA.")}
+        <p className="hero-line-2 font-drama italic text-5xl md:text-7xl lg:text-8xl leading-[0.9] tracking-[-0.02em] text-champagne mt-4">
+          {t("That's why I'm here.", "C'est pour ça que je suis là.")}
         </p>
 
-        <p className="hero-sub text-lg md:text-xl text-ivory/60 max-w-xl mt-8 leading-relaxed">
+        <p className="hero-sub text-lg md:text-xl text-ivory/50 max-w-2xl mt-8 leading-relaxed">
           {t(
-            <>AI visuals. Automated workflows. Websites & apps built at lightning speed. This is the portfolio of <span className="text-ivory font-medium">YUGZ</span> — the AI&nbsp;specialist.</>,
-            <>Visuels IA. Workflows automatisés. Sites & apps construits à la vitesse de l’éclair. Voici le portfolio de <span className="text-ivory font-medium">YUGZ</span> — le spécialiste&nbsp;IA.</>
+            <>Sites & apps. AI visuals. Automation. Training — I build and teach how AI can <span className="text-ivory font-medium">concretely transform</span> your business.</>,
+            <>Sites & apps. Visuels IA. Automatisation. Formation — je construis et j'enseigne comment l'IA peut <span className="text-ivory font-medium">transformer concrètement</span> ton business.</>
           )}
         </p>
 
         <div className="hero-cta flex flex-wrap items-center gap-4 mt-10">
-          <a href="#work" className="magnetic-btn inline-flex items-center gap-2 bg-champagne text-white font-semibold px-8 py-4 rounded-full text-base">
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="magnetic-btn inline-flex items-center gap-2 bg-champagne text-white font-semibold px-8 py-4 rounded-full text-base">
             <span className="flex items-center gap-2">
-              {t('View My Work', 'Voir Mon Travail')} <ArrowRight size={18} />
+              {t('Book Free Strategy Call', 'Réserver un Appel Gratuit')} <ArrowRight size={18} />
             </span>
           </a>
-          <a href="#cta" className="inline-flex items-center gap-2 text-ivory/50 hover:text-ivory transition-colors text-sm">
-            <Play size={14} /> {t('Book a Call', 'Réserver un Appel')}
+          <a href="#work" className="inline-flex items-center gap-2 text-ivory/50 hover:text-ivory transition-colors text-sm">
+            <ArrowDown size={14} /> {t('See my work', 'Voir mon travail')}
           </a>
         </div>
 
-        <div className="hero-stats flex flex-wrap gap-8 md:gap-12 mt-16 pt-8 border-t border-ivory/5">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <div className="text-2xl md:text-3xl font-bold text-champagne">{s.value}</div>
-              <div className="text-xs font-mono text-ivory/30 mt-1">{s.label}</div>
+        <div className="hero-pillars grid grid-cols-2 md:grid-cols-4 gap-3 mt-16 pt-8 border-t border-ivory/5">
+          {pillars.map((p) => (
+            <div key={p.label} className="p-4 rounded-2xl bg-ivory/[0.03] border border-ivory/5 hover:border-champagne/20 transition-all duration-300">
+              <div className="text-champagne mb-2">{p.icon}</div>
+              <div className="text-sm font-bold text-ivory">{p.label}</div>
+              <div className="text-xs text-ivory/40 mt-1 leading-snug">{p.sub}</div>
             </div>
           ))}
         </div>
@@ -665,14 +611,202 @@ function Hero() {
   )
 }
 
+// ─── USE CASES (Pain-Point Section) ──────────────────
+function UseCases() {
+  const sectionRef = useRef(null)
+  const { t } = useLang()
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const cards = sectionRef.current?.querySelectorAll('.usecase-card')
+    if (!cards?.length) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(cards,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.1, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
+          onComplete: () => { cards.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
+        }
+      )
+    }, sectionRef)
+    return () => { ctx.revert(); cards.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
+  }, [])
+
+  const cases = [
+    {
+      icon: <Scissors size={22} />,
+      persona: t('Hairdresser / Salon', 'Coiffeur / Salon'),
+      pain: t('You spend 1h/day confirming appointments by message', 'Tu passes 1h/jour à confirmer des RDV par message'),
+      solution: t('Automatic reminders, zero no-shows, +3h freed every week', 'Rappels automatiques, zéro no-show, +3h libérées chaque semaine'),
+    },
+    {
+      icon: <BookOpen size={22} />,
+      persona: t('Student', 'Étudiant'),
+      pain: t('You prepare your courses and dissertations like before', 'Tu prépares tes cours et dissertations comme avant'),
+      solution: t('You structure, write and revise 5x faster than your classmates', 'Tu structures, rédiges et révises 5x plus vite que tes camarades'),
+    },
+    {
+      icon: <ShoppingBag size={22} />,
+      persona: t('Online Seller', 'Vendeur en Ligne'),
+      pain: t('Your visuals are expensive and take forever', 'Tes visuels coûtent cher et prennent du temps'),
+      solution: t('Pro editorial shoots generated in minutes, no photographer', 'Des shootings éditoriaux pro générés en minutes, sans photographe'),
+    },
+  ]
+
+  return (
+    <section ref={sectionRef} className="py-24 px-6 md:px-12 max-w-6xl mx-auto">
+      <div className="text-center mb-12">
+        <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">
+          {t('What AI will concretely do for you', 'Ce que l\'IA va concrètement faire pour toi')}
+        </span>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-4">
+        {cases.map((c) => (
+          <div key={c.persona} className="usecase-card p-6 rounded-[1.5rem] bg-obsidian-light border border-ivory/5 hover:border-champagne/20 transition-all duration-500">
+            <div className="text-champagne mb-4">{c.icon}</div>
+            <h3 className="text-lg font-bold text-champagne mb-4">{c.persona}</h3>
+
+            <div className="space-y-4">
+              <div className="p-3 rounded-xl bg-ivory/[0.03] border border-ivory/5">
+                <p className="text-sm text-ivory/50 leading-relaxed">{c.pain}</p>
+              </div>
+
+              <div className="flex items-center justify-center">
+                <ArrowDown size={16} className="text-champagne/40" />
+                <span className="text-[10px] font-mono text-champagne/40 ml-2">{t('with AI', 'avec l\'IA')}</span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-champagne/5 border border-champagne/15">
+                <p className="text-sm text-ivory font-medium leading-relaxed">{c.solution}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// ─── SERVICES (4 Pillars) ────────────────────────────
+function Services() {
+  const sectionRef = useRef(null)
+  const { t } = useLang()
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const els = sectionRef.current?.querySelectorAll('.services-content > *')
+    if (!els?.length) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(els,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.1, duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 90%', once: true },
+          onComplete: () => { els.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
+        }
+      )
+    }, sectionRef)
+    return () => { ctx.revert(); els.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
+  }, [])
+
+  const services = [
+    {
+      icon: <Globe size={22} />,
+      title: t('Sites & Apps', 'Sites & Apps'),
+      description: t(
+        'High-performance websites, dashboards, and full-stack apps — built in days, not months. From landing pages to platforms with auth, payments, and admin dashboards.',
+        'Sites web performants, dashboards et apps full-stack — construits en quelques jours, pas en mois. Des landing pages aux plateformes avec auth, paiements et dashboards admin.'
+      ),
+      proof: t('Built AI compliance tools for IFC (World Bank)', 'Outils IA de conformité construits pour l\'IFC (Banque Mondiale)'),
+    },
+    {
+      icon: <Image size={22} />,
+      title: t('AI Visuals', 'Visuels IA'),
+      description: t(
+        'Brand imagery, social media content, product photography, video concepts — campaigns that used to cost $50k, generated with AI for a fraction.',
+        'Imagerie de marque, contenu réseaux sociaux, photo produit, concepts vidéo — des campagnes à 50k$ générées par IA pour une fraction du coût.'
+      ),
+      proof: t('150+ visuals created across 9 categories', '150+ visuels créés dans 9 catégories'),
+    },
+    {
+      icon: <Zap size={22} />,
+      title: t('Automation', 'Automatisation'),
+      description: t(
+        'Your repetitive tasks disappear. Appointment reminders, client follow-ups, data processing, content pipelines — if it\'s manual, I can automate it.',
+        'Tes tâches répétitives disparaissent. Rappels de RDV, suivi clients, traitement de données, pipelines de contenu — si c\'est manuel, je peux l\'automatiser.'
+      ),
+      proof: t('80% average cost reduction for clients', '80% de réduction de coûts en moyenne'),
+    },
+    {
+      icon: <GraduationCap size={22} />,
+      title: t('Training', 'Formation'),
+      description: t(
+        'You don\'t know where to start with AI? I teach you. Step-by-step courses on AI image generation, automation, prompt engineering — tailored to your field.',
+        'Tu ne sais pas par où commencer avec l\'IA ? Je t\'enseigne. Cours étape par étape sur la génération d\'images IA, l\'automatisation, le prompt engineering — adapté à ton domaine.'
+      ),
+      proof: t('Rated "insanely innovative" by students', 'Noté "innovant de ouf" par les étudiants'),
+    },
+  ]
+
+  return (
+    <section id="services" ref={sectionRef} className="py-32 px-6 md:px-12 max-w-6xl mx-auto">
+      <div className="services-content">
+        <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t('What I Do', 'Ce Que Je Fais')}</span>
+        <h2 className="text-4xl md:text-6xl font-bold tracking-[-0.04em] mt-4 mb-4 text-ivory">
+          {t(
+            <>YUGZ doesn't do "AI".<br /><span className="font-drama italic text-champagne">YUGZ accelerates</span> your business with AI.</>,
+            <>YUGZ ne fait pas "de l'IA".<br />YUGZ <span className="font-drama italic text-champagne">accélère ton business</span> avec l'IA.</>
+          )}
+        </h2>
+        <p className="text-lg text-ivory/40 max-w-3xl mb-16 leading-relaxed">
+          {t(
+            'Whether it\'s a site, a visual campaign, an automation, or training — the result is always the same: you go faster, you spend less, you have more impact.',
+            'Que ce soit un site, une campagne visuelle, une automatisation ou une formation — le résultat est toujours le même : tu vas plus vite, tu dépenses moins, tu as plus d\'impact.'
+          )}
+        </p>
+        <div className="grid md:grid-cols-2 gap-4">
+          {services.map((s) => (
+            <div key={s.title} className="p-8 rounded-[2rem] bg-obsidian-light border border-ivory/5 hover:border-champagne/20 transition-all duration-500 group">
+              <div className="w-12 h-12 rounded-2xl bg-champagne/10 flex items-center justify-center text-champagne mb-6 group-hover:bg-champagne/20 transition-colors duration-300">{s.icon}</div>
+              <h3 className="text-xl font-bold text-ivory mb-3">{s.title}</h3>
+              <p className="text-sm text-ivory/40 leading-relaxed mb-4">{s.description}</p>
+              <div className="flex items-center gap-2 text-xs font-mono text-champagne/60">
+                <CheckCircle size={12} />
+                <span>{s.proof}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Credibility bar */}
+        <div className="mt-12 p-6 rounded-2xl bg-ivory/[0.02] border border-ivory/5 flex flex-col md:flex-row items-center gap-6 md:gap-12">
+          <div className="flex items-center gap-3">
+            <Building2 size={20} className="text-champagne" />
+            <span className="text-sm text-ivory/60">{t('Trusted by', 'Confiance de')}</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-8">
+            <span className="text-sm font-bold text-ivory/40 tracking-wide">IFC — World Bank Group</span>
+            <span className="text-ivory/10">|</span>
+            <span className="text-sm font-bold text-ivory/40 tracking-wide">MonCap Barber</span>
+            <span className="text-ivory/10">|</span>
+            <span className="text-sm font-bold text-ivory/40 tracking-wide">YECARS</span>
+            <span className="text-ivory/10">|</span>
+            <span className="text-sm font-bold text-ivory/40 tracking-wide">K-Rion</span>
+            <span className="text-ivory/10">|</span>
+            <span className="text-sm font-bold text-ivory/40 tracking-wide">Bada Guesthouse</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── PORTFOLIO GRID ─────────────────────────────────
 function PortfolioItem({ item, index }) {
   const { t } = useLang()
-
   const isAI = item.category === 'ai-visuals' && item.slug
   const hasLink = item.link
 
-  // AI visuals → gallery page, websites with link → external site, others → no link
   const content = (
     <div className="relative w-full h-full min-h-[280px] md:min-h-[320px]">
       <img src={item.image} alt={t(...item.title)} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
@@ -702,12 +836,8 @@ function PortfolioItem({ item, index }) {
     index === 0 || index === 5 ? 'md:col-span-2 md:row-span-2' : ''
   }`
 
-  if (isAI) {
-    return <Link to={`/gallery/${item.slug}`} className={`${baseClass} cursor-pointer`}>{content}</Link>
-  }
-  if (hasLink) {
-    return <a href={item.link} target="_blank" rel="noopener noreferrer" className={`${baseClass} cursor-pointer`}>{content}</a>
-  }
+  if (isAI) return <Link to={`/gallery/${item.slug}`} className={`${baseClass} cursor-pointer`}>{content}</Link>
+  if (hasLink) return <a href={item.link} target="_blank" rel="noopener noreferrer" className={`${baseClass} cursor-pointer`}>{content}</a>
   return <div className={baseClass}>{content}</div>
 }
 
@@ -762,10 +892,7 @@ function Portfolio() {
       </div>
       {allFiltered.length > 9 && (
         <div className="flex justify-center mt-10">
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="px-8 py-3 rounded-full border border-ivory/10 text-ivory/60 hover:text-ivory hover:border-champagne/40 transition-all duration-300 text-sm font-medium"
-          >
+          <button onClick={() => setShowAll(!showAll)} className="px-8 py-3 rounded-full border border-ivory/10 text-ivory/60 hover:text-ivory hover:border-champagne/40 transition-all duration-300 text-sm font-medium">
             {showAll ? t('Show Less', 'Voir Moins') : t(`Show All (${allFiltered.length})`, `Tout Voir (${allFiltered.length})`)}
           </button>
         </div>
@@ -831,7 +958,6 @@ function Testimonials() {
         </div>
       </div>
 
-      {/* Hero testimonial */}
       <div className="px-6 md:px-12 max-w-7xl mx-auto mb-12">
         <div className="testimonial-card relative p-10 md:p-16 rounded-[2rem] border border-champagne/20 bg-gradient-to-br from-champagne/5 to-transparent overflow-hidden">
           <Quote size={48} className="text-champagne/15 absolute top-6 left-6" />
@@ -850,7 +976,6 @@ function Testimonials() {
         </div>
       </div>
 
-      {/* Scrolling cards */}
       <div ref={scrollRef} className="flex gap-4 overflow-x-auto px-6 md:px-12 pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {TESTIMONIALS.filter(x => !x.highlight).map((item, i) => (
           <div key={i} className="testimonial-card flex-shrink-0 w-[340px] md:w-[400px] p-6 rounded-[1.5rem] bg-obsidian-light border border-ivory/5 hover:border-champagne/20 transition-all duration-500">
@@ -969,60 +1094,9 @@ function Community() {
   )
 }
 
-// ─── ABOUT ──────────────────────────────────────────
-function About() {
-  const sectionRef = useRef(null)
-  const { t } = useLang()
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const els = sectionRef.current?.querySelectorAll('.about-content > *')
-    if (!els?.length) return
-    const ctx = gsap.context(() => {
-      gsap.fromTo(els,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.7, ease: 'power3.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 90%', once: true },
-          onComplete: () => { els.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
-        }
-      )
-    }, sectionRef)
-    return () => { ctx.revert(); els.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
-  }, [])
-
-  const services = [
-    { icon: <Image size={20} />, title: t('AI Visuals & Content', 'Visuels IA & Contenu'), description: t('Brand imagery, social media content, product photography, video concepts — all generated with AI at a fraction of traditional costs.', 'Imagerie de marque, contenu réseaux sociaux, photo produit, concepts vidéo — tout généré par IA à une fraction du coût traditionnel.') },
-    { icon: <Sparkles size={20} />, title: t('Automation & AI Tools', 'Automatisation & Outils IA'), description: t("Custom workflows that eliminate repetitive tasks. CRM automations, content pipelines, data processing — if it's manual, I can automate it.", 'Workflows personnalisés qui éliminent les tâches répétitives. Automatisations CRM, pipelines de contenu, traitement de données — si c\'est manuel, je peux l\'automatiser.') },
-    { icon: <Globe size={20} />, title: t('Websites & Apps', 'Sites Web & Apps'), description: t('High-performance websites, dashboards, and apps built in days. From landing pages to full-stack platforms — AI-accelerated development.', 'Sites web performants, dashboards et apps construits en quelques jours. Des landing pages aux plateformes full-stack — développement accéléré par l\'IA.') },
-  ]
-
-  return (
-    <section id="about" ref={sectionRef} className="py-32 px-6 md:px-12 max-w-6xl mx-auto">
-      <div className="about-content">
-        <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t('What I Do', 'Ce Que Je Fais')}</span>
-        <h2 className="text-4xl md:text-6xl font-bold tracking-[-0.04em] mt-4 mb-6 text-ivory">
-          {t(<>The AI specialist that<br /><span className="font-drama italic text-champagne">builds & creates</span>.</>, <>Le spécialiste IA qui<br /><span className="font-drama italic text-champagne">construit & crée</span>.</>)}
-        </h2>
-        <p className="text-lg text-ivory/40 max-w-2xl mb-16 leading-relaxed">
-          {t('I combine creative AI, automation, and rapid development to help businesses move faster and cost less. No fluff, no bloated teams — just results.', 'Je combine IA créative, automatisation et développement rapide pour aider les entreprises à aller plus vite et dépenser moins. Pas de blabla, pas d\'équipes gonflées — juste des résultats.')}
-        </p>
-        <div className="grid md:grid-cols-3 gap-6">
-          {services.map((s) => (
-            <div key={s.title} className="p-8 rounded-[2rem] bg-obsidian-light border border-ivory/5 hover:border-champagne/20 transition-all duration-500 group">
-              <div className="w-12 h-12 rounded-2xl bg-champagne/10 flex items-center justify-center text-champagne mb-6 group-hover:bg-champagne/20 transition-colors duration-300">{s.icon}</div>
-              <h3 className="text-xl font-bold text-ivory mb-3">{s.title}</h3>
-              <p className="text-sm text-ivory/40 leading-relaxed">{s.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ─── MARQUEE ────────────────────────────────────────
 function Marquee() {
-  const items = ['AI VISUALS', 'AUTOMATION', 'WEB DEVELOPMENT', 'APP DEVELOPMENT', 'PROMPT ENGINEERING', 'BRAND DESIGN', 'CONTENT CREATION', 'SKOOL COMMUNITY']
+  const items = ['SITES & APPS', 'AI VISUALS', 'AUTOMATION', 'TRAINING', 'PROMPT ENGINEERING', 'BRAND DESIGN', 'CONTENT CREATION', 'SKOOL COMMUNITY']
   return (
     <div className="py-8 border-y border-ivory/5 overflow-hidden">
       <div className="flex animate-marquee whitespace-nowrap">
@@ -1066,7 +1140,10 @@ function CTA() {
       <div className="cta-content max-w-3xl mx-auto">
         <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t("Let's Work Together", 'Travaillons Ensemble')}</span>
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-[-0.04em] mt-6 mb-4 text-ivory">
-          {t(<>Ready to build your<br /><span className="font-drama italic text-champagne">unfair advantage</span>?</>, <>Prêt à construire ton<br /><span className="font-drama italic text-champagne">avantage décisif</span> ?</>)}
+          {t(
+            <>Ready to build your<br /><span className="font-drama italic text-champagne">unfair advantage</span>?</>,
+            <>Prêt à construire ton<br /><span className="font-drama italic text-champagne">avantage décisif</span> ?</>
+          )}
         </h2>
         <p className="text-lg text-ivory/50 max-w-xl mx-auto mb-10 leading-relaxed">
           {t(
@@ -1095,15 +1172,18 @@ function Footer() {
           <div className="md:col-span-1">
             <span className="text-2xl font-bold tracking-[-0.04em] text-ivory">YUGZ</span>
             <p className="text-sm text-ivory/40 mt-3 max-w-xs leading-relaxed">
-              {t('The AI specialist that combines creative AI, automation, and development to help businesses move faster and cost less.', 'Le spécialiste IA qui combine IA créative, automatisation et développement pour aider les entreprises à aller plus vite et dépenser moins.')}
+              {t(
+                'AI specialist helping businesses go faster with sites, visuals, automation, and training.',
+                'Spécialiste IA qui aide les entreprises à aller plus vite avec sites, visuels, automatisation et formation.'
+              )}
             </p>
           </div>
           <div>
             <div className="text-xs font-mono text-ivory/30 uppercase tracking-[0.15em] mb-4">{t('Navigate', 'Naviguer')}</div>
             <ul className="space-y-2 text-sm text-ivory/50">
+              <li><a href="#services" className="hover:text-champagne transition-colors">{t('Services', 'Services')}</a></li>
               <li><a href="#work" className="hover:text-champagne transition-colors">{t('Work', 'Portfolio')}</a></li>
               <li><a href="#community" className="hover:text-champagne transition-colors">{t('Community', 'Communauté')}</a></li>
-              <li><a href="#about" className="hover:text-champagne transition-colors">{t('About', 'À propos')}</a></li>
             </ul>
           </div>
           <div>
@@ -1155,9 +1235,8 @@ function HomePage() {
 
     const raf1 = requestAnimationFrame(() => ScrollTrigger.refresh())
     const raf2 = setTimeout(() => ScrollTrigger.refresh(), 300)
-    // Safety net: force-show any elements stuck at opacity 0
     const safety = setTimeout(() => {
-      document.querySelectorAll('.portfolio-item, .testimonial-card, .community-card, .about-content > *, .cta-content > *, .hero-line-1, .hero-line-2, .hero-sub, .hero-cta, .hero-badge, .hero-stats > div, .community-heading div').forEach(el => {
+      document.querySelectorAll('.portfolio-item, .testimonial-card, .community-card, .about-content > *, .services-content > *, .cta-content > *, .hero-line-1, .hero-line-2, .hero-sub, .hero-cta, .hero-badge, .hero-pillars > div, .community-heading div, .usecase-card').forEach(el => {
         if (parseFloat(getComputedStyle(el).opacity) < 0.1 && !el.className?.includes('opacity-0') && !el.className?.includes('opacity-8')) {
           el.style.opacity = '1'
           el.style.transform = 'none'
@@ -1174,11 +1253,12 @@ function HomePage() {
     <>
       <Navbar />
       <Hero />
+      <UseCases />
+      <Services />
       <Marquee />
       <Portfolio />
       <Testimonials />
       <Community />
-      <About />
       <Marquee />
       <CTA />
       <Footer />
