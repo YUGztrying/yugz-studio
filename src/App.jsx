@@ -11,6 +11,22 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
 const CALENDLY = 'https://calendly.com/guyismaelmbengue/30min'
 const SKOOL = 'https://www.skool.com/yugz-fam-5520/about'
 
+// Scroll-to helper for HashRouter (href="#id" doesn't work with HashRouter)
+function scrollTo(id) {
+  const el = document.getElementById(id)
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+function ScrollLink({ to, className, children }) {
+  return (
+    <button
+      onClick={() => scrollTo(to)}
+      className={className}
+    >
+      {children}
+    </button>
+  )
+}
+
 // ─── i18n ───────────────────────────────────────────
 const LangContext = createContext({ lang: 'en', setLang: () => {}, t: (en, fr) => en })
 
@@ -497,9 +513,9 @@ function Navbar() {
     >
       <Link to="/" className="font-bold text-lg tracking-[-0.04em] text-ivory">YUGZ</Link>
       <div className="hidden md:flex items-center gap-6 text-sm text-ivory/70">
-        <a href="#services" className="hover:text-champagne transition-colors">{t('Services', 'Services')}</a>
-        <a href="#work" className="hover:text-champagne transition-colors">{t('Work', 'Portfolio')}</a>
-        <a href="#community" className="hover:text-champagne transition-colors">{t('Community', 'Communauté')}</a>
+        <ScrollLink to="services" className="hover:text-champagne transition-colors">{t('Services', 'Services')}</ScrollLink>
+        <ScrollLink to="work" className="hover:text-champagne transition-colors">{t('Work', 'Portfolio')}</ScrollLink>
+        <ScrollLink to="community" className="hover:text-champagne transition-colors">{t('Community', 'Communauté')}</ScrollLink>
       </div>
       <div className="flex items-center gap-2">
         <LangToggle />
@@ -587,9 +603,9 @@ function Hero() {
               {t('Book Free Strategy Call', 'Réserver un Appel Gratuit')} <ArrowRight size={18} />
             </span>
           </a>
-          <a href="#work" className="inline-flex items-center gap-2 text-ivory/50 hover:text-ivory transition-colors text-sm">
+          <ScrollLink to="work" className="inline-flex items-center gap-2 text-ivory/50 hover:text-ivory transition-colors text-sm">
             <ArrowDown size={14} /> {t('See my work', 'Voir mon travail')}
-          </a>
+          </ScrollLink>
         </div>
 
         <div className="hero-pillars grid grid-cols-2 md:grid-cols-4 gap-3 mt-16 pt-8 border-t border-ivory/5">
@@ -1181,9 +1197,9 @@ function Footer() {
           <div>
             <div className="text-xs font-mono text-ivory/30 uppercase tracking-[0.15em] mb-4">{t('Navigate', 'Naviguer')}</div>
             <ul className="space-y-2 text-sm text-ivory/50">
-              <li><a href="#services" className="hover:text-champagne transition-colors">{t('Services', 'Services')}</a></li>
-              <li><a href="#work" className="hover:text-champagne transition-colors">{t('Work', 'Portfolio')}</a></li>
-              <li><a href="#community" className="hover:text-champagne transition-colors">{t('Community', 'Communauté')}</a></li>
+              <li><ScrollLink to="services" className="hover:text-champagne transition-colors">{t('Services', 'Services')}</ScrollLink></li>
+              <li><ScrollLink to="work" className="hover:text-champagne transition-colors">{t('Work', 'Portfolio')}</ScrollLink></li>
+              <li><ScrollLink to="community" className="hover:text-champagne transition-colors">{t('Community', 'Communauté')}</ScrollLink></li>
             </ul>
           </div>
           <div>
