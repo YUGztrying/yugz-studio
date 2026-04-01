@@ -1053,8 +1053,6 @@ function Community() {
 
   const perks = [
     { icon: '🎓', title: t('AI Mastery Courses', 'Cours Maîtrise IA'), description: t('Step-by-step tutorials on AI image generation, automation, and prompt engineering.', 'Tutoriels étape par étape sur la génération d\'images IA, l\'automatisation et le prompt engineering.') },
-    { icon: '🛠️', title: t('Templates & Workflows', 'Templates & Workflows'), description: t('Pre-built automation templates, prompt libraries, and development boilerplates.', 'Templates d\'automatisation, bibliothèques de prompts et boilerplates de développement.') },
-    { icon: '🤝', title: t('Live Workshops', 'Ateliers en Direct'), description: t('Weekly live sessions where we build AI projects together from scratch.', 'Sessions live hebdomadaires où on construit des projets IA ensemble de zéro.') },
     { icon: '💬', title: t('Private Community', 'Communauté Privée'), description: t('Network with creators, entrepreneurs, and developers pushing AI boundaries.', 'Réseautez avec des créateurs, entrepreneurs et développeurs qui repoussent les limites de l\'IA.') },
   ]
 
