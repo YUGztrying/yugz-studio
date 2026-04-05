@@ -1097,8 +1097,8 @@ function Community() {
 
         <p className="text-lg text-ivory/40 max-w-2xl mb-16 leading-relaxed">
           {t(
-            'A private Skool community where I share everything — the tools, the techniques, the workflows. Whether you want to create AI content, automate your business, or build apps faster.',
-            'Une communauté Skool privée où je partage tout — les outils, les techniques, les workflows. Que tu veuilles créer du contenu IA, automatiser ton business ou construire des apps plus vite.'
+            'A private community for francophone professionals who want to use AI before their colleagues do. Courses, workflows, and direct access to someone building AI tools at IFC World Bank.',
+            'Une communauté privée pour les professionnels francophones qui veulent utiliser l\'IA avant leurs collègues. Cours, workflows, et accès direct à quelqu\'un qui construit des outils IA à l\'IFC Banque Mondiale.'
           )}
         </p>
 
@@ -1116,14 +1116,6 @@ function Community() {
           <a href={SKOOL} target="_blank" rel="noopener noreferrer" className="magnetic-btn inline-flex items-center gap-2 bg-champagne text-white font-semibold px-8 py-4 rounded-full text-base">
             <span className="flex items-center gap-2">{t('Join the Community', 'Rejoindre la Communauté')} <ExternalLink size={16} /></span>
           </a>
-          <div className="flex items-center gap-3">
-            <div className="flex -space-x-2">
-              {[1,2,3,4,5].map(i => (
-                <div key={i} className="w-8 h-8 rounded-full bg-obsidian-mid border-2 border-obsidian flex items-center justify-center text-[10px] font-mono text-ivory/40">{String.fromCharCode(64 + i)}</div>
-              ))}
-            </div>
-            <span className="text-sm text-ivory/30">{t('12+ members learning AI', '12+ membres apprenant l\'IA')}</span>
-          </div>
         </div>
       </div>
     </section>
