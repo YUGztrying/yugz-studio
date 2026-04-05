@@ -193,14 +193,6 @@ const PORTFOLIO_ITEMS = [
     link: 'https://yecars.vercel.app/',
   },
   {
-    id: 201, category: 'websites',
-    title: ['Bada Guesthouse', 'Bada Guesthouse'],
-    description: ['Guesthouse booking website — deployed on Vercel.', 'Site de réservation de maison d\'hôtes — déployé sur Vercel.'],
-    image: '/webapp/BADAGUESTHOUSE/BADAGUESTHOUSE.png',
-    tags: ['Next.js', 'Vercel', 'Booking'],
-    link: 'https://badaguesthouse.vercel.app/',
-  },
-  {
     id: 202, category: 'websites',
     title: ['MonCap Barber', 'MonCap Barber'],
     description: ['Booking system, automatic appointment reminders, post-visit Google review requests. Went from walk-in chaos to organized daily schedule.', 'Système de réservation, rappels automatiques, demandes d\'avis Google post-visite. De l\'anarchie au planning quotidien organisé.'],
@@ -813,24 +805,6 @@ function Services() {
           ))}
         </div>
 
-        {/* Credibility bar */}
-        <div className="mt-12 p-6 rounded-2xl bg-ivory/[0.02] border border-ivory/5 flex flex-col md:flex-row items-center gap-6 md:gap-12">
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <Building2 size={16} className="text-champagne/60" />
-            <span className="text-xs text-ivory/40 font-mono tracking-wide uppercase">{t('Trusted by', 'Confiance de')}</span>
-          </div>
-          <div className="flex flex-wrap items-center gap-6 md:gap-8">
-            <span className="text-sm font-bold text-ivory/30 tracking-wide">IFC — World Bank Group</span>
-            <span className="text-ivory/10 hidden md:inline">|</span>
-            <span className="text-sm font-bold text-ivory/30 tracking-wide">MonCap Barber</span>
-            <span className="text-ivory/10 hidden md:inline">|</span>
-            <span className="text-sm font-bold text-ivory/30 tracking-wide">YECARS</span>
-            <span className="text-ivory/10 hidden md:inline">|</span>
-            <span className="text-sm font-bold text-ivory/30 tracking-wide">K-Rion</span>
-            <span className="text-ivory/10 hidden md:inline">|</span>
-            <span className="text-sm font-bold text-ivory/30 tracking-wide">Bada Guesthouse</span>
-          </div>
-        </div>
       </div>
     </section>
   )
@@ -845,15 +819,16 @@ function PortfolioItem({ item, index }) {
   const content = (
     <div className="relative w-full h-full min-h-[280px] md:min-h-[320px]">
       <img src={item.image} alt={t(...item.title)} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-      <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent opacity-100 transition-opacity duration-500" />
+      {/* Deep gradient for readability */}
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,5,5,0.97) 0%, rgba(5,5,5,0.7) 40%, rgba(5,5,5,0.15) 100%)' }} />
       <div className="absolute top-4 left-4 flex flex-wrap gap-2">
         {item.tags.map((tag) => (
-          <span key={tag} className="text-[10px] font-mono px-2 py-1 rounded-full bg-obsidian/60 backdrop-blur-sm border border-ivory/10 text-ivory/60">{tag}</span>
+          <span key={tag} className="text-[10px] font-mono px-2 py-1 rounded-full bg-obsidian/70 backdrop-blur-sm border border-ivory/10 text-ivory/60">{tag}</span>
         ))}
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-6">
-        <h3 className="text-xl font-bold tracking-tight text-ivory mb-1 group-hover:text-champagne transition-colors duration-300">{t(...item.title)}</h3>
-        <p className="text-sm text-ivory/50 leading-relaxed">{t(...item.description)}</p>
+        <h3 className="text-lg font-bold tracking-tight text-ivory mb-2 group-hover:text-champagne transition-colors duration-300">{t(...item.title)}</h3>
+        <p className="text-sm text-ivory/80 leading-relaxed">{t(...item.description)}</p>
         <div className="mt-3 flex items-center gap-2 text-champagne text-xs font-mono opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
           {isAI ? (
             <>{t('View Gallery', 'Voir la Galerie')} <ArrowRight size={14} /></>
