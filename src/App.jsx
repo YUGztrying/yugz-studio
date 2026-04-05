@@ -268,6 +268,7 @@ const TESTIMONIALS = [
 
 // ─── LIGHTBOX COMPONENT ────────────────────────────────
 function Lightbox({ images, currentIndex, categoryTitle, onClose, onPrev, onNext }) {
+  const { t } = useLang()
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'Escape') onClose()
@@ -288,12 +289,12 @@ function Lightbox({ images, currentIndex, categoryTitle, onClose, onPrev, onNext
       <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 text-sm font-mono text-ivory/40">
         {currentIndex + 1} / {images.length}
       </div>
-      <button aria-label="Close gallery" onClick={onClose} className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full bg-ivory/5 border border-ivory/10 flex items-center justify-center text-ivory/60 hover:text-ivory hover:bg-ivory/10 transition-all">
+      <button aria-label={t('Close gallery', 'Fermer la galerie')} onClick={onClose} className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full bg-ivory/5 border border-ivory/10 flex items-center justify-center text-ivory/60 hover:text-ivory hover:bg-ivory/10 transition-all">
         <X size={18} />
       </button>
       {images.length > 1 && (
         <button
-          aria-label="Previous image"
+          aria-label={t('Previous image', 'Image précédente')}
           onClick={(e) => { e.stopPropagation(); onPrev() }}
           className="absolute left-4 md:left-8 z-10 w-12 h-12 rounded-full bg-ivory/5 border border-ivory/10 flex items-center justify-center text-ivory/60 hover:text-ivory hover:bg-ivory/10 transition-all"
         >
@@ -302,7 +303,7 @@ function Lightbox({ images, currentIndex, categoryTitle, onClose, onPrev, onNext
       )}
       {images.length > 1 && (
         <button
-          aria-label="Next image"
+          aria-label={t('Next image', 'Image suivante')}
           onClick={(e) => { e.stopPropagation(); onNext() }}
           className="absolute right-4 md:right-8 z-10 w-12 h-12 rounded-full bg-ivory/5 border border-ivory/10 flex items-center justify-center text-ivory/60 hover:text-ivory hover:bg-ivory/10 transition-all"
         >
@@ -474,12 +475,12 @@ function GalleryPage() {
 
 // ─── LANGUAGE TOGGLE ────────────────────────────────
 function LangToggle() {
-  const { lang, setLang } = useLang()
+  const { lang, setLang, t } = useLang()
   return (
     <button
       onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
       className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-ivory/5 hover:bg-ivory/10 border border-ivory/10 text-xs font-mono text-ivory/60 hover:text-ivory transition-all duration-300"
-      aria-label="Switch language"
+      aria-label={t('Switch to French', 'Passer en anglais')}
     >
       <Languages size={12} />
       <span className="uppercase font-semibold">{lang === 'en' ? 'FR' : 'EN'}</span>
@@ -695,9 +696,9 @@ function TheProblem() {
         {/* AFTER */}
         <div className="problem-card relative p-8 rounded-[2rem] border overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(220,38,38,0.06) 0%, rgba(220,38,38,0.02) 100%)', borderColor: 'rgba(220,38,38,0.2)' }}>
           <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(220,38,38,0.4), transparent)' }} />
-          <div className="absolute top-5 right-5">
-            <span className="text-[10px] font-mono text-champagne/60 tracking-[0.2em] uppercase px-2 py-1 rounded-full border border-champagne/20">
-              {t('After — Real result, IFC Analyst', 'Après — Vrai résultat, Analyste IFC')}
+          <div className="absolute top-5 right-5 max-w-[180px] text-right">
+            <span className="text-[10px] font-mono text-champagne/60 tracking-[0.15em] uppercase px-2 py-1 rounded-full border border-champagne/20 inline-block leading-relaxed">
+              {t('After — IFC Analyst', 'Après — Analyste IFC')}
             </span>
           </div>
           <h3 className="text-xl font-bold text-ivory mb-4">{t('Same slides. 1 hour.', 'Les mêmes slides. 1 heure.')}</h3>
@@ -884,7 +885,7 @@ function Portfolio() {
     <section id="work" ref={sectionRef} className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
         <div>
-          <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">Portfolio</span>
+          <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t('Portfolio', 'Portfolio')}</span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-[-0.04em] mt-4 text-ivory">
             {t(<>Selected <span className="font-drama italic text-champagne">work</span>.</>, <><span className="font-drama italic text-champagne">Travaux</span> sélectionnés.</>)}
           </h2>
@@ -1017,23 +1018,22 @@ function Testimonials() {
 // ─── SKOOL COMMUNITY ────────────────────────────────
 function Community() {
   const sectionRef = useRef(null)
-  const { t } = useLang()
+  const { t, lang } = useLang()
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const ctx = gsap.context(() => {
-      SplitText.create('.community-heading', {
-        type: 'words', autoSplit: true,
-        onSplit(self) {
-          gsap.fromTo(self.words,
-            { opacity: 0, y: 60 },
-            { opacity: 1, y: 0, stagger: 0.05, duration: 0.8, ease: 'power3.out',
-              scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
-              onComplete: () => { self.words.forEach(w => { w.style.opacity = '1'; w.style.transform = 'none' }) }
-            }
-          )
-        },
-      })
+      // Simple fade-up on the heading — no SplitText to avoid DOM/language conflicts
+      gsap.fromTo('.community-heading',
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
+          onComplete: () => {
+            const el = document.querySelector('.community-heading')
+            if (el) { el.style.opacity = '1'; el.style.transform = 'none' }
+          }
+        }
+      )
       const cards = document.querySelectorAll('.community-card')
       gsap.fromTo(cards,
         { y: 40, opacity: 0 },
@@ -1043,8 +1043,8 @@ function Community() {
         }
       )
     }, sectionRef)
-    return () => { ctx.revert(); document.querySelectorAll('.community-card').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
-  }, [])
+    return () => { ctx.revert(); document.querySelectorAll('.community-card, .community-heading').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
+  }, [lang])
 
   const perks = [
     { icon: '🎓', title: t('AI Mastery Courses', 'Cours Maîtrise IA'), description: t('Step-by-step tutorials on AI image generation, automation, and prompt engineering.', 'Tutoriels étape par étape sur la génération d\'images IA, l\'automatisation et le prompt engineering.') },
@@ -1099,7 +1099,17 @@ function Community() {
 
 // ─── MARQUEE ────────────────────────────────────────
 function Marquee() {
-  const items = ['SITES & APPS', 'AI VISUALS', 'AUTOMATION', 'TRAINING', 'PROMPT ENGINEERING', 'BRAND DESIGN', 'CONTENT CREATION', 'SKOOL COMMUNITY']
+  const { t } = useLang()
+  const items = [
+    t('SITES & APPS', 'SITES & APPS'),
+    t('AI VISUALS', 'VISUELS IA'),
+    t('AUTOMATION', 'AUTOMATISATION'),
+    t('TRAINING', 'FORMATION'),
+    t('PROMPT ENGINEERING', 'INGÉNIERIE DE PROMPTS'),
+    t('BRAND DESIGN', 'DESIGN DE MARQUE'),
+    t('CONTENT CREATION', 'CRÉATION DE CONTENU'),
+    t('SKOOL COMMUNITY', 'COMMUNAUTÉ SKOOL'),
+  ]
   return (
     <div className="py-8 border-y border-ivory/5 overflow-hidden">
       <div className="flex animate-marquee whitespace-nowrap">
