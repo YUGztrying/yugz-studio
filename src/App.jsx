@@ -154,7 +154,7 @@ const PORTFOLIO_ITEMS = [
   {
     id: 100, category: 'websites',
     title: ['K-Rion Cybersecurity', 'K-Rion Cybersécurité'],
-    description: ['Corporate cybersecurity website with modern dark design', 'Site web cybersécurité corporate au design sombre moderne'],
+    description: ['Corporate cybersecurity website — currently in development with the client.', 'Site web cybersécurité corporate — en cours de développement avec le client.'],
     image: '/websites/K-RION CYBERSECURITY/K-RION CYBERSECURITY.png',
     tags: ['Next.js', 'Vercel', 'Cybersecurity'],
     link: 'https://k-rion.vercel.app/',
@@ -187,7 +187,7 @@ const PORTFOLIO_ITEMS = [
   {
     id: 200, category: 'websites',
     title: ['YECARS — Mobile Car Wash', 'YECARS — Lavage Auto Mobile'],
-    description: ['Full-stack booking platform for mobile car wash service in Abidjan with subscriptions & admin dashboard', 'Plateforme de réservation full-stack pour lavage auto mobile à Abidjan avec abonnements & dashboard admin'],
+    description: ['Full-stack booking platform for a mobile car wash service in Abidjan — subscriptions, payments, admin dashboard. Built from zero.', 'Plateforme de réservation full-stack pour un service de lavage auto mobile à Abidjan — abonnements, paiements, dashboard admin. Construit de zéro.'],
     image: '/webapp/YECARS/YECARS.png',
     tags: ['Next.js', 'Supabase', 'Full-Stack'],
     link: 'https://yecars.vercel.app/',
@@ -195,7 +195,7 @@ const PORTFOLIO_ITEMS = [
   {
     id: 201, category: 'websites',
     title: ['Bada Guesthouse', 'Bada Guesthouse'],
-    description: ['Guesthouse booking website deployed on Vercel', 'Site de réservation de maison d\'hôtes déployé sur Vercel'],
+    description: ['Guesthouse booking website — deployed on Vercel.', 'Site de réservation de maison d\'hôtes — déployé sur Vercel.'],
     image: '/webapp/BADAGUESTHOUSE/BADAGUESTHOUSE.png',
     tags: ['Next.js', 'Vercel', 'Booking'],
     link: 'https://badaguesthouse.vercel.app/',
@@ -203,7 +203,7 @@ const PORTFOLIO_ITEMS = [
   {
     id: 202, category: 'websites',
     title: ['MonCap Barber', 'MonCap Barber'],
-    description: ['Barber shop website with online booking system', 'Site de salon de coiffure avec système de réservation en ligne'],
+    description: ['Booking system, automatic appointment reminders, post-visit Google review requests. Went from walk-in chaos to organized daily schedule.', 'Système de réservation, rappels automatiques, demandes d\'avis Google post-visite. De l\'anarchie au planning quotidien organisé.'],
     image: '/webapp/MONCAP BARBER/MONCAP BARBER.png',
     tags: ['Web App', 'Booking', 'Business'],
     link: 'https://moncapbarber.com/',
@@ -211,14 +211,14 @@ const PORTFOLIO_ITEMS = [
   {
     id: 203, category: 'websites',
     title: ['FinSpreading — Financial Analysis', 'FinSpreading — Analyse Financière'],
-    description: ['Internal IFC tool automating financial statement analysis for African banks & MFIs with AI-powered CAMELS scoring', 'Outil interne IFC automatisant l\'analyse d\'états financiers de banques & IMF africaines avec scoring CAMELS par IA'],
+    description: ['Financial statement analysis tool for African banks and MFIs — built during my IFC internship. Currently in development with the team.', 'Outil d\'analyse d\'états financiers pour banques et IMF africaines — construit pendant mon stage IFC. En cours de développement avec l\'équipe.'],
     image: '/webapp/FIN ANALYSIS/FINANCIAL ANALYSIS APP.png',
     tags: ['Next.js', 'Supabase', 'Claude AI'],
   },
   {
     id: 204, category: 'websites',
     title: ['IDD Screening App', 'App de Screening IDD'],
-    description: ['AI-powered integrity due diligence platform for investment compliance teams with automated PEP checks & risk reports', 'Plateforme de due diligence d\'intégrité par IA pour équipes de conformité avec vérifications PEP & rapports de risques automatisés'],
+    description: ['AI-powered integrity due diligence tool — built during my IFC internship. Automates what analysts did manually for hours: PEP checks, source research, IFC-format reporting. Adopted and scaled by the global team.', 'Outil de due diligence d\'intégrité par IA — construit pendant mon stage IFC. Automatise ce que les analystes faisaient manuellement pendant des heures : vérifications PEP, recherche de sources, rapports au format IFC. Adopté et déployé par l\'équipe mondiale.'],
     image: '/webapp/IDD APP/IFC IDD APP.png',
     tags: ['Next.js', 'Supabase', 'AI', 'Compliance'],
   },
@@ -227,9 +227,15 @@ const PORTFOLIO_ITEMS = [
 const TESTIMONIALS = [
   {
     quote: "Guy, you changed my life.",
-    name: "Client",
-    context: ["Said in person", "Dit en personne"],
+    name: "Investment Analyst, IFC World Bank",
+    context: ["Slides: 4–5h → 1h · Excel: hours → minutes · Meeting summaries: days → 2h", "Slides : 4–5h → 1h · Excel : heures → minutes · Résumés de réunions : jours → 2h"],
     highlight: true,
+  },
+  {
+    quote: "HighLevel nous a vraiment soulagés au niveau de l'affluence, ça a permis à nos clients d'économiser en temps d'attente... C'était vraiment la solution qu'on cherchait depuis très longtemps. Merci Guy Ismaël.",
+    translation: "HighLevel really relieved us in terms of traffic, it allowed our clients to save waiting time... It was truly the solution we had been looking for for a very long time. Thank you Guy Ismaël.",
+    name: "MonCap Barber",
+    context: ["Abidjan · Automatic booking system, appointment reminders, post-visit Google review requests", "Abidjan · Système de réservation automatique, rappels de RDV, demandes d'avis Google post-visite"],
   },
   {
     quote: "Franchement Guy Ismaël, je suis plus que satisfaite de ton travail ! Qualité 10/10, professionnalisme 10/10, contenu visuel parfait ! Tout a été respecté ! Je reviendrai c'est sûr !",
@@ -561,67 +567,66 @@ function Hero() {
     return () => { ctx.revert(); heroEls?.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
   }, [])
 
-  const pillars = [
-    { icon: <Globe size={18} />, label: t('Sites & Apps', 'Sites & Apps'), sub: t('Your product in days, not months', 'Ton produit existe en jours, pas en mois') },
-    { icon: <Image size={18} />, label: t('AI Visuals', 'Visuels IA'), sub: t('$50k campaigns — for a fraction', 'Tes campagnes à 50k$ — pour une fraction') },
-    { icon: <Zap size={18} />, label: t('Automation', 'Automatisation'), sub: t('Your repetitive tasks disappear', 'Tes tâches répétitives disparaissent') },
-    { icon: <GraduationCap size={18} />, label: t('Training', 'Formation'), sub: t('Learn to do it yourself', 'Tu apprends à le faire toi-même') },
+  const stats = [
+    { value: '5x', label: t('faster on documents & reports', 'plus rapide sur documents & rapports') },
+    { value: 'IFC', label: t('World Bank — tools deployed', 'Banque Mondiale — outils déployés') },
+    { value: '3h+', label: t('freed per week for MonCap clients', 'libérées par semaine pour MonCap') },
   ]
 
   return (
     <section id="hero" ref={heroRef} className="relative min-h-[100dvh] flex items-center overflow-hidden">
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80&auto=format" alt="" className="w-full h-full object-cover opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/85 to-obsidian/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-obsidian/70 to-transparent" />
+        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80&auto=format" alt="" className="w-full h-full object-cover opacity-20" style={{ filter: 'grayscale(30%)' }} />
+        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/90 to-obsidian/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-obsidian/80 to-transparent" />
+        {/* Cinematic red glow */}
+        <div className="absolute bottom-0 left-0 w-[600px] h-[400px] rounded-full opacity-[0.07]" style={{ background: 'radial-gradient(ellipse, #dc2626 0%, transparent 70%)', filter: 'blur(60px)' }} />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto w-full px-6 md:px-12 pt-32 pb-16 md:pb-24">
         <div className="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-champagne/20 bg-champagne/5 mb-8">
           <Sparkles size={14} className="text-champagne" />
-          <span className="text-xs font-mono text-champagne tracking-wide uppercase">{t('AI Specialist', 'Spécialiste IA')}</span>
+          <span className="text-xs font-mono text-champagne tracking-wide uppercase">{t('AI Specialist — Abidjan', 'Spécialiste IA — Abidjan')}</span>
         </div>
 
-        <h1 className="hero-line-1 font-bold text-4xl md:text-6xl lg:text-7xl tracking-[-0.04em] leading-[1.05] text-ivory mb-2">
+        <h1 className="hero-line-1 font-bold text-4xl md:text-6xl lg:text-[5.5rem] tracking-[-0.04em] leading-[1.02] text-ivory mb-2 max-w-4xl">
           {t(
-            <>You want to use AI —<br />but where do you start?</>,
-            <>Tu veux utiliser l'IA —<br />mais par où commencer ?</>
+            <>Most people spend their day<br />doing work <span className="text-champagne">AI could do</span><br />for them.</>,
+            <>La plupart des gens passent<br />leur journée à faire ce que<br /><span className="text-champagne">l'IA pourrait faire</span> pour eux.</>
           )}
         </h1>
-        <p className="hero-line-2 font-drama italic text-5xl md:text-7xl lg:text-8xl leading-[0.9] tracking-[-0.02em] text-champagne mt-4">
-          {t("That's why I'm here.", "C'est pour ça que je suis là.")}
-        </p>
 
-        <p className="hero-sub text-lg md:text-xl text-ivory/50 max-w-2xl mt-8 leading-relaxed">
+        <p className="hero-sub text-base md:text-lg text-ivory/45 max-w-xl mt-8 leading-relaxed">
           {t(
-            <>Sites & apps. AI visuals. Automation. Training — I build and teach how AI can <span className="text-ivory font-medium">concretely transform</span> your business.</>,
-            <>Sites & apps. Visuels IA. Automatisation. Formation — je construis et j'enseigne comment l'IA peut <span className="text-ivory font-medium">transformer concrètement</span> ton business.</>
+            <>Slides that take 4 hours. Reports that take a day. Tasks that repeat every week without changing. I help professionals and teams eliminate that — and <span className="text-ivory/70">reclaim their time</span> for work that actually matters.</>,
+            <>Des slides qui prennent 4 heures. Des rapports qui prennent une journée. Des tâches qui se répètent chaque semaine sans changer. J'aide les pros et les équipes à éliminer ça — et à <span className="text-ivory/70">récupérer leur temps</span> pour ce qui compte vraiment.</>
           )}
         </p>
 
         <div className="hero-cta flex flex-wrap items-center gap-4 mt-10">
           <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="magnetic-btn inline-flex items-center gap-2 bg-champagne text-white font-semibold px-8 py-4 rounded-full text-base">
             <span className="flex items-center gap-2">
-              {t('Book Free Strategy Call', 'Réserver un Appel Gratuit')} <ArrowRight size={18} />
+              {t('Book a free 30-min call', 'Réserver un appel gratuit de 30 min')} <ArrowRight size={18} />
             </span>
           </a>
           <ScrollLink to="work" className="inline-flex items-center gap-2 text-ivory/50 hover:text-ivory transition-colors text-sm">
-            <ArrowDown size={14} /> {t('See my work', 'Voir mon travail')}
+            <ArrowDown size={14} /> {t('See the work', 'Voir le travail')}
           </ScrollLink>
         </div>
 
-        <div className="hero-pillars grid grid-cols-2 md:grid-cols-4 gap-3 mt-16 pt-8 border-t border-ivory/5">
-          {pillars.map((p) => (
-            <div key={p.label} className="p-4 rounded-2xl bg-ivory/[0.03] border border-ivory/5 hover:border-champagne/20 transition-all duration-300">
-              <div className="text-champagne mb-2">{p.icon}</div>
-              <div className="text-sm font-bold text-ivory">{p.label}</div>
-              <div className="text-xs text-ivory/40 mt-1 leading-snug">{p.sub}</div>
+        {/* Stats bar */}
+        <div className="hero-pillars grid grid-cols-3 gap-px mt-16 pt-8 border-t border-ivory/5">
+          {stats.map((s) => (
+            <div key={s.value} className="px-0 md:px-4 first:pl-0">
+              <div className="text-2xl md:text-3xl font-bold text-ivory tracking-[-0.04em]">{s.value}</div>
+              <div className="text-xs text-ivory/35 mt-1 leading-snug max-w-[140px]">{s.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-40">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-30">
         <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-ivory/50">{t('Scroll', 'Défiler')}</span>
         <div className="w-px h-8 bg-gradient-to-b from-champagne/60 to-transparent" />
       </div>
@@ -629,78 +634,88 @@ function Hero() {
   )
 }
 
-// ─── USE CASES (Pain-Point Section) ──────────────────
-function UseCases() {
+// ─── THE PROBLEM ──────────────────────────────────────
+function TheProblem() {
   const sectionRef = useRef(null)
   const { t } = useLang()
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const cards = sectionRef.current?.querySelectorAll('.usecase-card')
-    if (!cards?.length) return
     const ctx = gsap.context(() => {
-      gsap.fromTo(cards,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.6, ease: 'power3.out',
+      gsap.fromTo('.problem-heading',
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
-          onComplete: () => { cards.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
+          onComplete: () => { document.querySelector('.problem-heading').style.opacity = '1'; document.querySelector('.problem-heading').style.transform = 'none' }
+        }
+      )
+      gsap.fromTo('.problem-card',
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.15, duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: '.problem-cards', start: 'top 88%', once: true },
+          onComplete: () => { document.querySelectorAll('.problem-card').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
         }
       )
     }, sectionRef)
-    return () => { ctx.revert(); cards.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
+    return () => {
+      ctx.revert()
+      document.querySelector('.problem-heading')?.style && Object.assign(document.querySelector('.problem-heading').style, { opacity: '1', transform: 'none' })
+      document.querySelectorAll('.problem-card').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' })
+    }
   }, [])
 
-  const cases = [
-    {
-      icon: <Scissors size={22} />,
-      persona: t('Hairdresser / Salon', 'Coiffeur / Salon'),
-      pain: t('You spend 1h/day confirming appointments by message', 'Tu passes 1h/jour à confirmer des RDV par message'),
-      solution: t('Automatic reminders, zero no-shows, +3h freed every week', 'Rappels automatiques, zéro no-show, +3h libérées chaque semaine'),
-    },
-    {
-      icon: <BookOpen size={22} />,
-      persona: t('Student', 'Étudiant'),
-      pain: t('You prepare your courses and dissertations like before', 'Tu prépares tes cours et dissertations comme avant'),
-      solution: t('You structure, write and revise 5x faster than your classmates', 'Tu structures, rédiges et révises 5x plus vite que tes camarades'),
-    },
-    {
-      icon: <ShoppingBag size={22} />,
-      persona: t('Online Seller', 'Vendeur en Ligne'),
-      pain: t('Your visuals are expensive and take forever', 'Tes visuels coûtent cher et prennent du temps'),
-      solution: t('Pro editorial shoots generated in minutes, no photographer', 'Des shootings éditoriaux pro générés en minutes, sans photographe'),
-    },
-  ]
-
   return (
-    <section ref={sectionRef} className="py-24 px-6 md:px-12 max-w-6xl mx-auto">
-      <div className="text-center mb-12">
-        <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">
-          {t('What AI will concretely do for you', 'Ce que l\'IA va concrètement faire pour toi')}
-        </span>
-      </div>
+    <section ref={sectionRef} className="py-32 px-6 md:px-12 max-w-6xl mx-auto">
+      <span className="text-xs font-mono text-champagne/50 tracking-[0.2em] uppercase block mb-6">
+        {t('The Problem', 'Le Problème')}
+      </span>
 
-      <div className="grid md:grid-cols-3 gap-4">
-        {cases.map((c) => (
-          <div key={c.persona} className="usecase-card p-6 rounded-[1.5rem] bg-obsidian-light border border-ivory/5 hover:border-champagne/20 transition-all duration-500">
-            <div className="text-champagne mb-4">{c.icon}</div>
-            <h3 className="text-lg font-bold text-champagne mb-4">{c.persona}</h3>
+      <h2 className="problem-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.04em] leading-[1.06] text-ivory mb-6 max-w-3xl">
+        {t(
+          <>You're doing in 8 hours<br />what should take <span className="text-champagne">45 minutes</span>.</>,
+          <>Tu fais en 8 heures<br />ce qui devrait prendre <span className="text-champagne">45 minutes</span>.</>
+        )}
+      </h2>
+      <p className="text-base text-ivory/40 max-w-xl mb-16 leading-relaxed">
+        {t(
+          "Not because you're slow. Because no one showed you how to use the tools that exist right now.",
+          "Pas parce que tu es lent. Parce que personne ne t'a montré comment utiliser les outils qui existent déjà."
+        )}
+      </p>
 
-            <div className="space-y-4">
-              <div className="p-3 rounded-xl bg-ivory/[0.03] border border-ivory/5">
-                <p className="text-sm text-ivory/50 leading-relaxed">{c.pain}</p>
-              </div>
-
-              <div className="flex items-center justify-center">
-                <ArrowDown size={16} className="text-champagne/40" />
-                <span className="text-[10px] font-mono text-champagne/40 ml-2">{t('with AI', 'avec l\'IA')}</span>
-              </div>
-
-              <div className="p-3 rounded-xl bg-champagne/5 border border-champagne/15">
-                <p className="text-sm text-ivory font-medium leading-relaxed">{c.solution}</p>
-              </div>
-            </div>
+      <div className="problem-cards grid md:grid-cols-2 gap-4">
+        {/* BEFORE */}
+        <div className="problem-card relative p-8 rounded-[2rem] bg-ivory/[0.02] border border-ivory/8 overflow-hidden">
+          <div className="absolute top-5 right-5">
+            <span className="text-[10px] font-mono text-ivory/20 tracking-[0.2em] uppercase px-2 py-1 rounded-full border border-ivory/8">
+              {t('Before', 'Avant')}
+            </span>
           </div>
-        ))}
+          <h3 className="text-xl font-bold text-ivory/50 mb-4">{t('Slides & reports', 'Slides & rapports')}</h3>
+          <p className="text-sm text-ivory/35 leading-relaxed">
+            {t(
+              '4–5 hours per presentation. Manually formatting, writing, restructuring. Every week.',
+              '4–5 heures par présentation. Formatage manuel, rédaction, restructuration. Chaque semaine.'
+            )}
+          </p>
+        </div>
+
+        {/* AFTER */}
+        <div className="problem-card relative p-8 rounded-[2rem] border overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(220,38,38,0.06) 0%, rgba(220,38,38,0.02) 100%)', borderColor: 'rgba(220,38,38,0.2)' }}>
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(220,38,38,0.4), transparent)' }} />
+          <div className="absolute top-5 right-5">
+            <span className="text-[10px] font-mono text-champagne/60 tracking-[0.2em] uppercase px-2 py-1 rounded-full border border-champagne/20">
+              {t('After — Real result, IFC Analyst', 'Après — Vrai résultat, Analyste IFC')}
+            </span>
+          </div>
+          <h3 className="text-xl font-bold text-ivory mb-4">{t('Same slides. 1 hour.', 'Les mêmes slides. 1 heure.')}</h3>
+          <p className="text-sm text-ivory/60 leading-relaxed">
+            {t(
+              'Excel files done in minutes. Meeting summaries in 2 hours instead of days. Every week, without extra effort.',
+              'Fichiers Excel en minutes. Résumés de réunions en 2 heures au lieu de jours. Chaque semaine, sans effort supplémentaire.'
+            )}
+          </p>
+        </div>
       </div>
     </section>
   )
@@ -729,40 +744,40 @@ function Services() {
 
   const services = [
     {
-      icon: <Globe size={22} />,
-      title: t('Sites & Apps', 'Sites & Apps'),
+      icon: <Sparkles size={22} />,
+      title: t('AI Tools & Apps', 'Outils IA & Apps'),
       description: t(
-        'High-performance websites, dashboards, and full-stack apps — built in days, not months. From landing pages to platforms with auth, payments, and admin dashboards.',
-        'Sites web performants, dashboards et apps full-stack — construits en quelques jours, pas en mois. Des landing pages aux plateformes avec auth, paiements et dashboards admin.'
+        'Custom tools built around your specific workflow. Like the IDD screening app I built for IFC — what took analysts hours now takes minutes.',
+        'Des outils sur mesure construits autour de ton workflow spécifique. Comme l\'app de screening IDD que j\'ai construite pour l\'IFC — ce qui prenait des heures aux analystes prend maintenant des minutes.'
       ),
-      proof: t('Built AI compliance tools for IFC (World Bank)', 'Outils IA de conformité construits pour l\'IFC (Banque Mondiale)'),
-    },
-    {
-      icon: <Image size={22} />,
-      title: t('AI Visuals', 'Visuels IA'),
-      description: t(
-        'Brand imagery, social media content, product photography, video concepts — campaigns that used to cost $50k, generated with AI for a fraction.',
-        'Imagerie de marque, contenu réseaux sociaux, photo produit, concepts vidéo — des campagnes à 50k$ générées par IA pour une fraction du coût.'
-      ),
-      proof: t('150+ visuals created across 9 categories', '150+ visuels créés dans 9 catégories'),
+      proof: t('Built and deployed at IFC World Bank', 'Construit et déployé à l\'IFC Banque Mondiale'),
     },
     {
       icon: <Zap size={22} />,
       title: t('Automation', 'Automatisation'),
       description: t(
-        'Your repetitive tasks disappear. Appointment reminders, client follow-ups, data processing, content pipelines — if it\'s manual, I can automate it.',
-        'Tes tâches répétitives disparaissent. Rappels de RDV, suivi clients, traitement de données, pipelines de contenu — si c\'est manuel, je peux l\'automatiser.'
+        'Repetitive tasks disappear. MonCap Barber went from walk-in chaos to automatic bookings, reminders, and Google review requests.',
+        'Les tâches répétitives disparaissent. MonCap Barber est passé du chaos des walk-ins aux réservations automatiques, rappels et demandes d\'avis Google.'
       ),
-      proof: t('80% average cost reduction for clients', '80% de réduction de coûts en moyenne'),
+      proof: t('3h+ freed per week at MonCap Barber', '3h+ libérées par semaine chez MonCap Barber'),
     },
     {
       icon: <GraduationCap size={22} />,
-      title: t('Training', 'Formation'),
+      title: t('Training & Coaching', 'Formation & Coaching'),
       description: t(
-        'You don\'t know where to start with AI? I teach you. Step-by-step courses on AI image generation, automation, prompt engineering — tailored to your field.',
-        'Tu ne sais pas par où commencer avec l\'IA ? Je t\'enseigne. Cours étape par étape sur la génération d\'images IA, l\'automatisation, le prompt engineering — adapté à ton domaine.'
+        'I teach your team to use AI for their actual tasks — not prompting 101, but the specific workflows that save them hours every week.',
+        'J\'enseigne à ton équipe à utiliser l\'IA pour ses vraies tâches — pas le prompting 101, mais les workflows spécifiques qui leur font gagner des heures chaque semaine.'
       ),
-      proof: t('Rated "insanely innovative" by students', 'Noté "innovant de ouf" par les étudiants'),
+      proof: t('Rated "insanely innovative" at IFC, Abidjan', 'Noté "innovant de ouf" à l\'IFC, Abidjan'),
+    },
+    {
+      icon: <Globe size={22} />,
+      title: t('Sites & Products', 'Sites & Produits'),
+      description: t(
+        'Functional products shipped fast. YECARS went from zero to a full booking platform with subscriptions and admin dashboard.',
+        'Des produits fonctionnels livrés rapidement. YECARS est passé de zéro à une plateforme de réservation complète avec abonnements et dashboard admin.'
+      ),
+      proof: t('Full-stack · Next.js · Supabase · Vercel', 'Full-stack · Next.js · Supabase · Vercel'),
     },
   ]
 
@@ -770,25 +785,27 @@ function Services() {
     <section id="services" ref={sectionRef} className="py-32 px-6 md:px-12 max-w-6xl mx-auto">
       <div className="services-content">
         <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t('What I Do', 'Ce Que Je Fais')}</span>
-        <h2 className="text-4xl md:text-6xl font-bold tracking-[-0.04em] mt-4 mb-4 text-ivory">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.04em] mt-4 mb-4 text-ivory max-w-3xl leading-[1.06]">
           {t(
-            <>YUGZ doesn't do "AI".<br /><span className="font-drama italic text-champagne">YUGZ accelerates</span> your business with AI.</>,
-            <>YUGZ ne fait pas "de l'IA".<br />YUGZ <span className="font-drama italic text-champagne">accélère ton business</span> avec l'IA.</>
+            <>I build and teach AI tools<br />that change <span className="font-drama italic text-champagne">how you work</span>.</>,
+            <>Je construis et enseigne<br />des outils IA qui changent <span className="font-drama italic text-champagne">ta façon de travailler</span>.</>
           )}
         </h2>
-        <p className="text-lg text-ivory/40 max-w-3xl mb-16 leading-relaxed">
+        <p className="text-base text-ivory/40 max-w-2xl mb-16 leading-relaxed">
           {t(
-            'Whether it\'s a site, a visual campaign, an automation, or training — the result is always the same: you go faster, you spend less, you have more impact.',
-            'Que ce soit un site, une campagne visuelle, une automatisation ou une formation — le résultat est toujours le même : tu vas plus vite, tu dépenses moins, tu as plus d\'impact.'
+            'Not theory. Not generic tutorials. Concrete implementations — for your workflow, your team, your industry.',
+            'Pas de théorie. Pas de tutoriels génériques. Des implémentations concrètes — pour ton workflow, ton équipe, ton secteur.'
           )}
         </p>
         <div className="grid md:grid-cols-2 gap-4">
           {services.map((s) => (
-            <div key={s.title} className="p-8 rounded-[2rem] bg-obsidian-light border border-ivory/5 hover:border-champagne/20 transition-all duration-500 group">
-              <div className="w-12 h-12 rounded-2xl bg-champagne/10 flex items-center justify-center text-champagne mb-6 group-hover:bg-champagne/20 transition-colors duration-300">{s.icon}</div>
+            <div key={s.title} className="p-8 rounded-[2rem] bg-obsidian-light border border-ivory/5 hover:border-champagne/20 transition-all duration-500 group relative overflow-hidden">
+              {/* Subtle spotlight on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ background: 'radial-gradient(circle at 30% 30%, rgba(220,38,38,0.04) 0%, transparent 60%)' }} />
+              <div className="w-12 h-12 rounded-2xl bg-champagne/8 flex items-center justify-center text-champagne mb-6 group-hover:bg-champagne/15 group-hover:scale-110 transition-all duration-300">{s.icon}</div>
               <h3 className="text-xl font-bold text-ivory mb-3">{s.title}</h3>
-              <p className="text-sm text-ivory/40 leading-relaxed mb-4">{s.description}</p>
-              <div className="flex items-center gap-2 text-xs font-mono text-champagne/60">
+              <p className="text-sm text-ivory/40 leading-relaxed mb-5">{s.description}</p>
+              <div className="flex items-center gap-2 text-xs font-mono text-champagne/50">
                 <CheckCircle size={12} />
                 <span>{s.proof}</span>
               </div>
@@ -798,20 +815,20 @@ function Services() {
 
         {/* Credibility bar */}
         <div className="mt-12 p-6 rounded-2xl bg-ivory/[0.02] border border-ivory/5 flex flex-col md:flex-row items-center gap-6 md:gap-12">
-          <div className="flex items-center gap-3">
-            <Building2 size={20} className="text-champagne" />
-            <span className="text-sm text-ivory/60">{t('Trusted by', 'Confiance de')}</span>
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <Building2 size={16} className="text-champagne/60" />
+            <span className="text-xs text-ivory/40 font-mono tracking-wide uppercase">{t('Trusted by', 'Confiance de')}</span>
           </div>
-          <div className="flex flex-wrap items-center gap-8">
-            <span className="text-sm font-bold text-ivory/40 tracking-wide">IFC — World Bank Group</span>
-            <span className="text-ivory/10">|</span>
-            <span className="text-sm font-bold text-ivory/40 tracking-wide">MonCap Barber</span>
-            <span className="text-ivory/10">|</span>
-            <span className="text-sm font-bold text-ivory/40 tracking-wide">YECARS</span>
-            <span className="text-ivory/10">|</span>
-            <span className="text-sm font-bold text-ivory/40 tracking-wide">K-Rion</span>
-            <span className="text-ivory/10">|</span>
-            <span className="text-sm font-bold text-ivory/40 tracking-wide">Bada Guesthouse</span>
+          <div className="flex flex-wrap items-center gap-6 md:gap-8">
+            <span className="text-sm font-bold text-ivory/30 tracking-wide">IFC — World Bank Group</span>
+            <span className="text-ivory/10 hidden md:inline">|</span>
+            <span className="text-sm font-bold text-ivory/30 tracking-wide">MonCap Barber</span>
+            <span className="text-ivory/10 hidden md:inline">|</span>
+            <span className="text-sm font-bold text-ivory/30 tracking-wide">YECARS</span>
+            <span className="text-ivory/10 hidden md:inline">|</span>
+            <span className="text-sm font-bold text-ivory/30 tracking-wide">K-Rion</span>
+            <span className="text-ivory/10 hidden md:inline">|</span>
+            <span className="text-sm font-bold text-ivory/30 tracking-wide">Bada Guesthouse</span>
           </div>
         </div>
       </div>
@@ -987,9 +1004,12 @@ function Testimonials() {
               )}
             </p>
           </blockquote>
-          <div className="mt-6 flex items-center gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-champagne" />
-            <span className="text-sm text-ivory/40 font-mono">— {t('Said in person by a client', 'Dit en personne par un client')}</span>
+          <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
+            <div className="w-1.5 h-1.5 rounded-full bg-champagne flex-shrink-0" />
+            <div>
+              <span className="text-sm font-semibold text-ivory/70">{TESTIMONIALS[0].name}</span>
+              <span className="text-sm text-ivory/30 font-mono ml-3">— {t(...TESTIMONIALS[0].context)}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1130,6 +1150,63 @@ function Marquee() {
   )
 }
 
+// ─── WHY YUGZ ───────────────────────────────────────
+function WhyYugz() {
+  const sectionRef = useRef(null)
+  const { t } = useLang()
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.whyyugz-content > *',
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.12, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
+          onComplete: () => { document.querySelectorAll('.whyyugz-content > *').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
+        }
+      )
+    }, sectionRef)
+    return () => { ctx.revert(); document.querySelectorAll('.whyyugz-content > *').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none' }) }
+  }, [])
+
+  return (
+    <section ref={sectionRef} className="py-32 px-6 md:px-12 max-w-6xl mx-auto">
+      <div className="grid md:grid-cols-[1fr_1.8fr] gap-12 md:gap-20 items-start">
+        {/* Left: Label + Headline */}
+        <div className="whyyugz-content">
+          <span className="text-xs font-mono text-champagne/50 tracking-[0.2em] uppercase block mb-6">
+            {t('Why YUGZ', 'Pourquoi YUGZ')}
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.04em] text-ivory leading-[1.1]">
+            {t(
+              <>I'm not selling AI.<br /><span className="text-champagne">I'm giving you<br />back your time.</span></>,
+              <>Je ne vends pas l'IA.<br /><span className="text-champagne">Je te redonne<br />ton temps.</span></>
+            )}
+          </h2>
+          {/* Decorative line */}
+          <div className="mt-10 w-12 h-px bg-champagne/30" />
+        </div>
+
+        {/* Right: Story paragraphs */}
+        <div className="whyyugz-content space-y-6">
+          <p className="text-base text-ivory/55 leading-[1.8]">
+            {t(
+              "I started using AI in January 2023 — not because of the hype, but because I had a deadline and no time. My grade convinced me. I never stopped learning since. Now I work at IFC World Bank building AI tools that analysts use every day. I know what works in the real world — not just in demos.",
+              "J'ai commencé à utiliser l'IA en janvier 2023 — pas par effet de mode, mais parce que j'avais une deadline et pas de temps. Ma note m'a convaincu. Je n'ai jamais arrêté d'apprendre depuis. Maintenant je travaille à l'IFC Banque Mondiale en construisant des outils IA que les analystes utilisent chaque jour. Je sais ce qui fonctionne dans le monde réel — pas juste en démo."
+            )}
+          </p>
+          <p className="text-base text-ivory/55 leading-[1.8]">
+            {t(
+              "I'm based in Abidjan. I work with professionals and teams across Francophone Africa who want to stop losing hours to tasks that should be automated — and start being the most capable person in the room.",
+              "Je suis basé à Abidjan. Je travaille avec des professionnels et des équipes à travers l'Afrique francophone qui veulent arrêter de perdre des heures sur des tâches qui devraient être automatisées — et commencer à être la personne la plus compétente dans la pièce."
+            )}
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── CTA ────────────────────────────────────────────
 function CTA() {
   const sectionRef = useRef(null)
@@ -1154,25 +1231,30 @@ function CTA() {
   return (
     <section id="cta" ref={sectionRef} className="py-40 px-6 md:px-12 text-center" style={{ background: 'radial-gradient(ellipse at center, rgba(220,38,38,0.06) 0%, transparent 70%)' }}>
       <div className="cta-content max-w-3xl mx-auto">
-        <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t("Let's Work Together", 'Travaillons Ensemble')}</span>
+        <span className="text-xs font-mono text-champagne/60 tracking-[0.2em] uppercase">{t("Let's Work", 'Travaillons')}</span>
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-[-0.04em] mt-6 mb-4 text-ivory">
           {t(
-            <>Ready to build your<br /><span className="font-drama italic text-champagne">unfair advantage</span>?</>,
-            <>Prêt à construire ton<br /><span className="font-drama italic text-champagne">avantage décisif</span> ?</>
+            <>Ready to see what<br /><span className="font-drama italic text-champagne">changes in 30 days</span>?</>,
+            <>Prêt à voir ce qui<br /><span className="font-drama italic text-champagne">change en 30 jours</span> ?</>
           )}
         </h2>
-        <p className="text-lg text-ivory/50 max-w-xl mx-auto mb-10 leading-relaxed">
+        <p className="text-base text-ivory/50 max-w-xl mx-auto mb-10 leading-relaxed">
           {t(
-            "Book a free 30-minute strategy call. I'll audit your workflows, identify your biggest opportunities, and show you exactly how AI can transform your business.",
-            'Réserve un appel stratégique gratuit de 30 minutes. J\'auditerai tes workflows, identifierai tes plus grandes opportunités et te montrerai exactement comment l\'IA peut transformer ton business.'
+            "Book a free 30-minute call. I'll look at your current workflows and show you exactly where AI can give you back the most time — with no fluff, no pitch deck.",
+            "Réserve un appel gratuit de 30 minutes. Je regarderai tes workflows actuels et te montrerai exactement où l'IA peut te redonner le plus de temps — sans blabla, sans pitch deck."
           )}
         </p>
-        <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="magnetic-btn inline-flex items-center gap-3 bg-champagne text-white font-bold px-10 py-5 rounded-full text-lg">
-          <span className="flex items-center gap-3">
-            {t('Book Free Strategy Call', 'Réserver un Appel Gratuit')} <ArrowRight size={20} />
-          </span>
-        </a>
-        <p className="mt-6 text-xs text-ivory/30 font-mono">{t('No commitment. No pitch deck. Just answers.', 'Sans engagement. Sans pitch deck. Juste des réponses.')}</p>
+        <div className="flex flex-wrap justify-center items-center gap-4">
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="magnetic-btn inline-flex items-center gap-3 bg-champagne text-white font-bold px-10 py-5 rounded-full text-lg">
+            <span className="flex items-center gap-3">
+              {t('Book free call', 'Réserver un appel gratuit')} <ArrowRight size={20} />
+            </span>
+          </a>
+          <ScrollLink to="work" className="inline-flex items-center gap-2 text-ivory/40 hover:text-ivory transition-colors text-sm">
+            {t('See the work', 'Voir le travail')} <ArrowRight size={14} />
+          </ScrollLink>
+        </div>
+        <p className="mt-6 text-xs text-ivory/25 font-mono">{t('No commitment. No fluff. Just answers.', 'Sans engagement. Sans blabla. Juste des réponses.')}</p>
       </div>
     </section>
   )
@@ -1252,7 +1334,7 @@ function HomePage() {
     const raf1 = requestAnimationFrame(() => ScrollTrigger.refresh())
     const raf2 = setTimeout(() => ScrollTrigger.refresh(), 300)
     const safety = setTimeout(() => {
-      document.querySelectorAll('.portfolio-item, .testimonial-card, .community-card, .about-content > *, .services-content > *, .cta-content > *, .hero-line-1, .hero-line-2, .hero-sub, .hero-cta, .hero-badge, .hero-pillars > div, .community-heading div, .usecase-card').forEach(el => {
+      document.querySelectorAll('.portfolio-item, .testimonial-card, .community-card, .about-content > *, .services-content > *, .cta-content > *, .hero-line-1, .hero-line-2, .hero-sub, .hero-cta, .hero-badge, .hero-pillars > div, .community-heading div, .problem-card, .problem-heading, .whyyugz-content > *').forEach(el => {
         if (parseFloat(getComputedStyle(el).opacity) < 0.1 && !el.className?.includes('opacity-0') && !el.className?.includes('opacity-8')) {
           el.style.opacity = '1'
           el.style.transform = 'none'
@@ -1269,11 +1351,12 @@ function HomePage() {
     <>
       <Navbar />
       <Hero />
-      <UseCases />
+      <TheProblem />
       <Services />
       <Marquee />
       <Portfolio />
       <Testimonials />
+      <WhyYugz />
       <Community />
       <Marquee />
       <CTA />
